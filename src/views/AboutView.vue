@@ -93,7 +93,6 @@ const coreValues = [
     </div>
   </div>
 
-  <!-- impact -->
   <statistics></statistics>
   <c-t-a-section></c-t-a-section>
 </template>
