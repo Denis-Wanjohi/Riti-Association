@@ -1,13 +1,13 @@
 <template>
-    <div class="bg-gray-800 h-[70px] flex items-center">
+    <div class="bg-gray-800 h-[70px] flex items-center justify-between">
         <div class=" w-1/4 h-full flex shrink-0 items-center justify-center">
             <img src="/images/logo.jpg" class=" w-15 h-12 object-fill rounded" alt="">
-            <!-- <p>RITI ASSOCIATION</p> -->
+            
         </div>
         <div class="card text-white w-full">
-            <Menubar :model="items">
+            <Menubar :model="items"  style="background: local;color: white;border: 0;">
                 <template #item="{item}">
-                    <p @click="router.push('/')" class="px-5 cursor-pointer hover:bg-gray-600 py-1 rounded-sm  font-bold text-xl">{{ item.label }}</p>
+                    <p @click="router.push(`${item.link}`)" class="px-5 cursor-pointer hover:bg-gray-600 py-1 rounded-sm  font-bold text-xl text-white">{{ item.label }}</p>
                 </template>
             </Menubar>
         </div>
@@ -22,11 +22,13 @@ import router from "@/router";
 const items = ref([
     {
         label: 'Home',
-        icon: 'pi pi-home'
+        icon: 'pi pi-home',
+        link:'/'
     },
     {
         label: 'About Us',
-        icon: 'pi pi-star'
+        icon: 'pi pi-star',
+        link:'/about-us'
     },
     {
         label: 'Projects',
@@ -62,7 +64,8 @@ const items = ref([
     },
     {
         label: 'Contacts',
-        icon: 'pi pi-envelope'
+        icon: 'pi pi-envelope',
+        link:'/contacts'
     }
 ]);
 </script>

@@ -3,6 +3,7 @@ import HeroSection from '@/components/HeroSection.vue';
 import ValueSection from '@/components/ValueSection.vue';
 import GuideSection from '@/components/GuideSection.vue';
 import ServiceSection from '@/components/ServiceSection.vue';
+import Statistics from '@/components/Statistics.vue';
 import ProjectSection from '@/components/ProjectSection.vue';
 import CTASection from '@/components/CTASection.vue';
 </script>
@@ -13,6 +14,7 @@ import CTASection from '@/components/CTASection.vue';
     <value-section></value-section>
     <guide-section></guide-section>
     <service-section></service-section>
+    <statistics></statistics>
     <project-section></project-section>
     <c-t-a-section></c-t-a-section>
   </main>

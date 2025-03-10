@@ -3,7 +3,7 @@
 
 <template>
   
-    <div class="w-full h-[90vh]" style="background-image: url('/images/hero.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+    <div class="w-full h-[90vh]" style="background-image: url('/images/hero.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
       <div class="w-full bg-gradient-to-tr from-gray-600    h-full bg-opacity-10 flex items-center  text-white">
         <div>
             <p class="text-6xl font-bold cinzel text-center mx-auto">Unlock Your Potential...</p>

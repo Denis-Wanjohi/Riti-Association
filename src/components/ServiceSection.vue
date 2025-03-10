@@ -33,28 +33,8 @@ const services = [
             <p class="text-5xl my-4 cinzel">Enabling Your Career and Business Goals</p>
             <p class="my-2 font-thin">Explore our diverse offerings designed to empower you with the skills, opportunities, and support you need</p>
         </div>
-
-        <!-- <div class="relative w-48 h-36 bg-yellow-200 rounded-md shadow-md overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-6 bg-yellow-300 rounded-t-md shadow-inner">
-                <div class="absolute top-0 left-4 w-12 h-6 bg-yellow-400 rounded-t-md"></div>
-            </div>
-
-            <div class="absolute top-6 left-0 w-full h-full bg-yellow-200 p-4">
-                <div class="text-sm font-semibold mb-2">My Documents</div>
-                <p class="text-xs text-gray-600">
-                Contains important files and information.
-                </p>
-
-                <div class="mt-4 flex space-x-2">
-                <div class="w-4 h-4 bg-gray-300 rounded-sm"></div>
-                <div class="w-4 h-4 bg-gray-300 rounded-sm"></div>
-                <div class="w-4 h-4 bg-gray-300 rounded-sm"></div>
-                </div>
-            </div>
-        </div> -->
-
-        
-        <div class="grid grid-cols-3 gap-10 mt-10">
+  
+        <!-- <div class="grid grid-cols-3 gap-10 mt-10">
             <div class="relative w-3/4 h-[43vh] cursor-pointer  bg-blue-200  shadow-md hover:shadow-orange-400 m-4 mx-auto" v-for="{service,description} in services">
             <div class="absolute -top-5 left-0 w-1/2 h-5 bg-blue-300 rounded-tr-[10px] shadow-inner"></div>   
 
@@ -65,6 +45,17 @@ const services = [
                 </p>
             </div>
         </div>
+        </div> -->
+
+        <div class="grid grid-cols-3 gap-10 m-10 ">
+          <div v-for="{service,description} in services" class="border-slate-500 cursor-pointer border rounded-xl p-10">
+            <!-- {{ values }} -->
+            <p>
+              <!-- <i :class="`${icon}`" style="font-size: 25px;"></i> -->
+            </p>
+            <h2 class="font-bold text-2xl gabriela-regular-service">{{ service }}</h2>
+            <p class="text-slate-900 mt-3">{{ description }}</p>
+          </div>
         </div>
 
    
