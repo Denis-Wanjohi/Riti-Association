@@ -14,19 +14,19 @@ const projects = [
     "projectName": "Gikomba Mtaani",
     "description": "Gikomba Mtaani operates as a community-focused apparel and household goods shop, offering affordable second-hand items. It serves as a crucial side-hustle opportunity, enabling members to generate income while actively pursuing long-term, stable employment.",
     "learnMoreLink": "/gikomba-mtaani",
-    "image": "/images/RITI Association of Unemployed Professionals_files/riti-07-e1707898597284-1024x638.jpeg"
+    "image": "/images/riti-07-e1707898597284-1024x638.jpeg"
   },
   {
     "projectName": "Rehabilitation Center",
     "description": "The St. Nicholas Rehabilitation Center and Psychiatric Hospital is dedicated to providing comprehensive rehabilitation and counseling services. It addresses mental health and well-being, offering vital support to individuals and families within the broader community, promoting healing and recovery.",
     "learnMoreLink": "/rehabilitation-center",
-    "image": "/images/RITI Association of Unemployed Professionals_files/rehab-st-e1707899186196-1024x445.jpg"
+    "image": "/images/rehab-st-e1707899186196-1024x445.jpg"
   },
   {
     "projectName": "RITI SACCO",
     "description": "RITI SACCO functions as a financial cooperative, empowering members through accessible savings and loan opportunities. This crucial project provides the necessary financial support to launch and expand business ventures, fostering entrepreneurial growth and economic stability within the community.",
     "learnMoreLink": "/riti-sacco",
-    "image":"/images/RITI Association of Unemployed Professionals_files/riti-06-e1707898652523-1024x307.jpeg"
+    "image":"/images/riti-06-e1707898652523-1024x307.jpeg"
   }
 ]
 </script>
