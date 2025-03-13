@@ -1,6 +1,8 @@
 <script setup>
+import router from '@/router';
 import IconPortal from './icons/IconPortal.vue';
 import { Divider } from 'primevue';
+import {scrollUp} from '@/utilities/util.js'
 </script>
 <template>
     <div class="flex  w-11/12  mx-auto">
@@ -26,7 +28,7 @@ import { Divider } from 'primevue';
                     <p class="my-3 font-bold  cursor-pointer"><i class="pi pi-home mx-2"></i> Home</p>
                     <p class="my-3 font-bold cursor-pointer"> <i  class="pi pi-user mx-2"></i> About us</p>
                     <p class="my-3 font-bold cursor-pointer"> <i class="pi pi-users mx-2"></i>Applicants</p>
-                    <p class="my-3 font-bold cursor-pointer flex items-center ">
+                    <p class="my-3 font-bold cursor-pointer flex items-center"  @click="router.push('/auth/login'),scrollUp()">
                         <IconPortal  class="mx-2"></IconPortal>
                         Portal</p>
                 </div>
