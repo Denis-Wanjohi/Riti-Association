@@ -1,4 +1,5 @@
 <script setup>
+import router from '@/router';
 import IconEmployerSearch from './icons/IconEmployerSearch.vue';
 import IconHandShake from './icons/IconHandShake.vue';
 import IconProfile from './icons/IconProfile.vue';
@@ -42,7 +43,7 @@ const steps = [
                 <h1 class="text-3xl font-bold mb-5">{{title}}</h1>
                 <p class="my-5 px-4">{{ description }}</p>
                 <!-- <p>explore</p> -->
-                <Button severity="info" v-if="index == 0" class="px-3  font-bold ">Get Started <i class="pi pi-arrow-up-right"></i> </Button>
+                <Button severity="info" v-if="index == 0" class="px-3  font-bold" @click="router.push('/auth/register')">Get Started <i class="pi pi-arrow-up-right"></i> </Button>
             </div>
         </div>
     </div>

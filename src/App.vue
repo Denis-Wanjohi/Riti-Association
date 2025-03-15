@@ -7,6 +7,8 @@ import Footer from './components/Footer.vue'
 
 <template>
   <nav-bar></nav-bar>
-  <RouterView />
+  <main class="min-h-screen">
+    <RouterView />
+  </main>
   <Footer></Footer>
 </template>

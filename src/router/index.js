@@ -20,16 +20,16 @@ const router = createRouter({
     },
     {
       path:'/auth/register',
-      name:'/registration',
+      name:'registration',
       component:  ()=> import('../views/Auth/RegisterView.vue')
     },
     {
       path:'/auth/login',
-      name:'/registration',
+      name:'login',
       component: ()=> import('../views/Auth/LoginView.vue')
     },
     {
-      path:'/verify',
+      path:'/auth/verify',
       name:'verify',
       component: ()=> import('../views/Registration/VerifyEmail.vue')
     },
@@ -47,6 +47,11 @@ const router = createRouter({
       path:'/registration/work-experience-details',
       name:'work experience details',
       component: ()=> import('../views/Portal/Registration/WorkExperienceDetails.vue')
+    },
+    {
+      path:'/portal/dashboard',
+      name:'portal-dashboard',
+      component: ()=> import ('../views/Portal/DashBoard/Dashboard.vue')
     }
   ],
 })
