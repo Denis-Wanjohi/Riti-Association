@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { useApplicantStore } from '@/stores/applicant'
 
 
 const router = createRouter({
@@ -29,6 +30,11 @@ const router = createRouter({
       component: ()=> import('../views/Auth/LoginView.vue')
     },
     {
+      path:'/auth/change-password',
+      name:'change-password',
+      component: ()=> import('../views/Auth/ChangePassword.vue')
+    },
+    {
       path:'/auth/verify',
       name:'verify',
       component: ()=> import('../views/Registration/VerifyEmail.vue')
@@ -54,6 +60,12 @@ const router = createRouter({
       component: ()=> import ('../views/Portal/DashBoard/Dashboard.vue')
     }
   ],
+})
+
+router.beforeEach(()=>{
+  if(sessionStorage.getItem('applicant')){
+    useApplicantStore().setUser(JSON.stringify(sessionStorage.getItem('applicant')))
+  }
 })
 
 export default router

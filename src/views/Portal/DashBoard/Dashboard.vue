@@ -1,11 +1,44 @@
 <script setup>
 import Heading from '@/components/Heading.vue';
 import DashCard from '@/components/dash_card.vue';
+import {Button} from 'primevue'
+import { useApplicantStore } from '@/stores/applicant';
+import { onMounted, ref } from 'vue';
+import router from '@/router';
+import axiosClient from '@/axios/axios';
+const applicantStore = useApplicantStore()
+const user_data = ref(null)
+user_data.value = sessionStorage.getItem('applicant')
+onMounted(()=>{
+    if(sessionStorage.getItem('applicant').step != 4){
+        setTimeout(()=>{
+            // router.push('/registration/personal-details')
+        },5000) 
+    } 
+    getUser()
+})
+function getUser(){
+    axiosClient.get('/user')
+    .then(res=>{
+        
+        sessionStorage.setItem('applicant',JSON.stringify(res.data.user))
+        user_data.value = res.data.user
+    })
+}
 </script>
 <template>
 <div>
     <heading heading="Dashboard"></heading>
-    <div class="grid grid-cols-2 gap-3 h-screen p-10 cinzel_dashboard_h3">
+    {{ user_data.fullname }}
+    <div v-if="user_data.step != 4"  class="flex justify-center items-center h-[70vh] ">
+        <div class="w-1/4  mx-auto text-center">
+            <p class="text-2xl font-bold my-10">WELCOME</p>
+            <RouterLink to="/registration/personal-details">
+                <Button severity="info"  class="font-bold text-3xl tect">Finish up your registration</Button>
+            </RouterLink>
+        </div>
+    </div>
+    <div v-else  class="grid grid-cols-2 gap-3 h-screen p-10 cinzel_dashboard_h3">
         <dash-card h4="YOUR INFORMATION">
            
             <div class="">
@@ -86,7 +119,6 @@ import DashCard from '@/components/dash_card.vue';
                 </div>
             </div>
         </dash-card>
-       
     </div>
 </div>
 </template>
