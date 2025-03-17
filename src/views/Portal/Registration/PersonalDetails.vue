@@ -2,10 +2,11 @@
 import Heading from '@/components/Heading.vue';
 import { FloatLabel, Select, InputText, Button,FileUpload,Toast } from 'primevue';
 import { useToast } from 'primevue';
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import LoadingButton from '@/components/loadingButton.vue';
 import axiosClient from '@/axios/axios';
 import router from '@/router';
+import { scrollUp } from '@/utilities/util';
 
 const toast = useToast()
 const isSubmitting = ref(false)
@@ -38,6 +39,9 @@ const user = ref({
     kinEmail: null,
     kinRelationship: null,
 
+})
+onMounted(()=>{
+    scrollUp()
 })
 function onFileSelect(event) {
     const file = event.files[0];
@@ -75,6 +79,7 @@ const onSubmit = ()=>{
 
     axiosClient.post('/personal-details',data)
     .then(res=>{
+        isSubmitting.value = false
         if(res.data.message == 'updated'){
             router.push('/registration/education-details')
         }else{
@@ -82,6 +87,7 @@ const onSubmit = ()=>{
         }
     })
     .catch(err=>{
+        isSubmitting.value = false
         console.error(err)
     })
 }

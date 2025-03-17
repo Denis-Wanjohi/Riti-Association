@@ -98,8 +98,6 @@ onMounted(()=>{
 </script>
 <template>
     <div class="h-screen">
-    {{ isSubmitting }}
-    {{ route.query.e != null }}
         <div class="w-3/4 mx-auto">
             <heading heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="L O G  I N"></heading>
             <form @submit.prevent="onSubmit" class="grid grid-cols-1 gap-y-5 w-5/12 mx-auto mt-10" >

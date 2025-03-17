@@ -2,10 +2,11 @@
 import axiosClient from '@/axios/axios';
 import Heading from '@/components/Heading.vue';
 import { FloatLabel,InputText,Button,Toast } from 'primevue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import LoadingButton from '@/components/loadingButton.vue';
 import { useToast } from 'primevue';
 import router from '@/router';
+import { scrollUp } from '@/utilities/util';
 
 const toast = useToast()
 const isSubmiting = ref(false)
@@ -19,6 +20,10 @@ const user = ref({
     highYear:null,
     highGrade:null,
     
+})
+
+onMounted(()=>{
+    scrollUp()
 })
 
 const onSubmit = ()=>{

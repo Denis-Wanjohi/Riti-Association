@@ -6,10 +6,12 @@ import { useApplicantStore } from '@/stores/applicant';
 import { onMounted, ref } from 'vue';
 import router from '@/router';
 import axiosClient from '@/axios/axios';
+import { scrollUp } from '@/utilities/util';
 const applicantStore = useApplicantStore()
 const user_data = ref(null)
-user_data.value = sessionStorage.getItem('applicant')
+user_data.value = JSON.parse(sessionStorage.getItem('applicant'))
 onMounted(()=>{
+    scrollUp()
     if(sessionStorage.getItem('applicant').step != 4){
         setTimeout(()=>{
             // router.push('/registration/personal-details')
@@ -22,19 +24,28 @@ function getUser(){
     .then(res=>{
         
         sessionStorage.setItem('applicant',JSON.stringify(res.data.user))
-        user_data.value = res.data.user
+        // user_data.value = res.data.user
     })
+}
+function registrationPage(){
+    if(user_data.step == 0){
+        router.push('/registration/personal-details')
+    }else if(user_data.step == 1){
+        router.push('/registration/education-details')
+    }else if(user_data.step == 2){
+        router.push('/registration/work-experience-details')
+    }
 }
 </script>
 <template>
 <div>
+    {{ user_data.step }}
     <heading heading="Dashboard"></heading>
-    {{ user_data.fullname }}
     <div v-if="user_data.step != 4"  class="flex justify-center items-center h-[70vh] ">
         <div class="w-1/4  mx-auto text-center">
             <p class="text-2xl font-bold my-10">WELCOME</p>
-            <RouterLink to="/registration/personal-details">
-                <Button severity="info"  class="font-bold text-3xl tect">Finish up your registration</Button>
+            <RouterLink :to=" user_data.step == 1 ? '/registration/personal-details' : user_data.step == 2 ?'/registration/education-details':'/registration/work-experience-details' ">
+                <Button severity="info"  class="font-bold text-3xl">Finish up your registration</Button>
             </RouterLink>
         </div>
     </div>
@@ -42,13 +53,13 @@ function getUser(){
         <dash-card h4="YOUR INFORMATION">
            
             <div class="">
-                <img src="/public/images/hero.png" class="w-[140px] mx-auto h-[140px] rounded-full  p-5" alt="">
+                <img :src="user_data.personal_details.image" class="w-[140px] mx-auto h-[140px] rounded-full  p-5" alt="">
                 <div class="p-5 w-fit mx-auto">
-                    <p> <span class="font-bold pr-3">Name:</span> Kim kimani</p>
-                    <p> <span class="font-bold pr-3">Email:</span>imani@gmail.com</p>
-                    <p> <span class="font-bold pr-3">Phone No.:</span>0778787878</p>
-                    <p> <span class="font-bold pr-3">D.O.B:</span>20/08/2001</p>
-                    <p> <span class="font-bold pr-3">Membership ID:</span>RAOUP/0000/25</p>
+                    <p> <span class="font-bold pr-3">Name:</span> {{ user_data.fullname }}</p>
+                    <p> <span class="font-bold pr-3">Email:</span>{{ user_data.email }}</p>
+                    <p> <span class="font-bold pr-3">Phone No.:</span>{{ user_data.phone }}</p>
+                    <p> <span class="font-bold pr-3">D.O.B:</span>{{ user_data.dob }}</p>
+                    <p> <span class="font-bold pr-3">Membership ID:</span>{{ user_data.membershipID }}</p>
                 </div>
             </div>
         </dash-card>
@@ -56,24 +67,24 @@ function getUser(){
           
             <div class="">
                 <div class="p-5 grid grid-cols-2 gap-4">
-                    <p> <span class="font-bold pr-3">Nationality:</span> Kenyan</p>
-                    <p> <span class="font-bold pr-3">Marital Status:</span>Single</p>
-                    <p> <span class="font-bold pr-3">Dual Citizen:</span>Yes</p>
-                    <p> <span class="font-bold pr-3">Interview Mode:</span>Remote</p>
+                    <p> <span class="font-bold pr-3">Nationality:</span> {{ user_data.personal_details.nationality }}</p>
+                    <p> <span class="font-bold pr-3">Marital Status:</span>{{ user_data.personal_details.status }}</p>
+                    <p> <span class="font-bold pr-3">Dual Citizen:</span>{{ user_data.personal_details.citizen }}</p>
+                    <p> <span class="font-bold pr-3">Interview Mode:</span>{{ user_data.personal_details.interview }}</p>
                 </div>
                 <p class="text-center  cinzel_dashboard_h3 underline">Residential Address</p>
                 <div class="p-5 grid grid-cols-2 gap-4">
-                    <p> <span class="font-bold pr-3">County:</span> Meru</p>
-                    <p> <span class="font-bold pr-3">Sub-county:</span>Imenti-North</p>
-                    <p> <span class="font-bold pr-3">Consistency:</span>Municpality</p>
-                    <p> <span class="font-bold pr-3">Ward:</span>Kaaga</p>
+                    <p> <span class="font-bold pr-3">County:</span> {{ user_data.personal_details.county }}</p>
+                    <p> <span class="font-bold pr-3">Sub-county:</span>{{ user_data.personal_details.subCounty }}</p>
+                    <p> <span class="font-bold pr-3">Consistency:</span>{{ user_data.personal_details.constituency }}</p>
+                    <p> <span class="font-bold pr-3">Ward:</span>{{ user_data.personal_details.ward }}</p>
                 </div>
                 <p class="text-center cinzel_dashboard_h3 underline">Next of Kin</p>
                 <div class="p-5 grid grid-cols-2 gap-4">
-                    <p> <span class="font-bold pr-3">Name:</span> Jerry Tim</p>
-                    <p> <span class="font-bold pr-3">Email:</span>tim@gmail.com</p>
-                    <p> <span class="font-bold pr-3">Phone No.:</span>0778787878</p>
-                    <p> <span class="font-bold pr-3">Relationship:</span>Brother</p>
+                    <p> <span class="font-bold pr-3">Name:</span> {{ user_data.personal_details.kinName }}</p>
+                    <p> <span class="font-bold pr-3">Email:</span>{{ user_data.personal_details.kinEmail }}</p>
+                    <p> <span class="font-bold pr-3">Phone No.:</span>{{ user_data.personal_details.kinPhone }}</p>
+                    <p> <span class="font-bold pr-3">Relationship:</span>{{ user_data.personal_details.kinRelationship }}</p>
                 </div>
             </div>
         </dash-card>
@@ -81,41 +92,41 @@ function getUser(){
             <div class="">
                 <p class="text-center cinzel_dashboard_h3 mt-5 underline">HIGHER EDUCATION</p>
                 <div class="p-5 grid grid-cols-2 gap-4">
-                    <p> <span class="font-bold pr-3">Highest level:</span> University</p>
-                    <p> <span class="font-bold pr-3">University/Collage:</span>University of Nairobi</p>
-                    <p> <span class="font-bold pr-3">Course:</span>Medial Sciences</p>
-                    <p> <span class="font-bold pr-3">Grade:</span>First Class</p>
-                    <p> <span class="font-bold pr-3">Graduation Year:</span>2020</p>
+                    <p> <span class="font-bold pr-3">Highest level:</span> {{ user_data.education_details.highestLevel }}</p>
+                    <p> <span class="font-bold pr-3">University/Collage:</span>{{ user_data.education_details.collage }}</p>
+                    <p> <span class="font-bold pr-3">Course:</span>{{ user_data.education_details.course }}</p>
+                    <p> <span class="font-bold pr-3">Grade:</span>{{ user_data.education_details.grade }}</p>
+                    <p> <span class="font-bold pr-3">Graduation Year:</span>{{ user_data.education_details.year }}</p>
                 </div>
                 <p class="text-center cinzel_dashboard_h3 mt-5 underline">HIGH SCHOOL</p>
                 <div class="p-5 grid grid-cols-2 gap-4">
-                    <p> <span class="font-bold pr-3">Name:</span> Kabianga</p>
-                    <p> <span class="font-bold pr-3">Year Completed:</span>2016</p>
-                    <p> <span class="font-bold pr-3">Grade:</span>B+</p>
+                    <p> <span class="font-bold pr-3">Name:</span> {{ user_data.education_details.highSchool }}</p>
+                    <p> <span class="font-bold pr-3">Year Completed:</span>{{ user_data.education_details.highYear }}</p>
+                    <p> <span class="font-bold pr-3">Grade:</span>{{ user_data.education_details.highGrade }}</p>
                 </div>
             </div>
         </dash-card>
         <dash-card h4="WORK experience INFORMATION">
             <div class="">
                 
-                <p class="text-center my-5"> <span class="font-bold pr-3">Years of Experience:</span> 4 years</p>
+                <p class="text-center my-5"> <span class="font-bold pr-3">Years of Experience:</span> {{ user_data.work_details.yearsOfExperience }} years</p>
                 <p class="text-center cinzel_dashboard_h3 mt-5 underline">Institutions/Companies</p>
                 <div class="p-5 grid grid-cols-2 gap-4">
-                    <p> <span class="font-bold pr-3">Name:</span> Kinuthi and sons</p>
-                    <p> <span class="font-bold pr-3">Job Title:</span>Secretary</p>
+                    <p> <span class="font-bold pr-3">Name:</span> {{ user_data.work_details.company }}</p>
+                    <p> <span class="font-bold pr-3">Job Title:</span>{{ user_data.work_details.jobTitle }}</p>
                     <p> <span class="font-bold pr-3">From:</span>09/08/23</p>
                     <p> <span class="font-bold pr-3">From:</span>09/08/24</p>
-                    <p> <span class="font-bold pr-3">Name:</span> Aspire Eats</p>
-                    <p> <span class="font-bold pr-3">Job Title:</span>Chef</p>
+                    <p> <span class="font-bold pr-3">Name:</span> {{ user_data.work_details.company2 }}</p>
+                    <p> <span class="font-bold pr-3">Job Title:</span>{{ user_data.work_details.jobTitle2 }}</p>
                     <p> <span class="font-bold pr-3">From:</span>09/08/24</p>
                     <p> <span class="font-bold pr-3">From:</span>09/08/25</p>
                 </div>
 
                 <p class="text-center cinzel_dashboard_h3 mt-5 underline">Referees</p>
                 <div class="p-5 grid grid-cols-2 gap-4">
-                    <p> <span class="font-bold pr-3">First Name:</span> Kinuthi </p>
-                    <p> <span class="font-bold pr-3">Last Name:</span>Kimani</p>
-                    <p> <span class="font-bold pr-3">Institution:</span>Kinuthia and sons</p>
+                    <p> <span class="font-bold pr-3">First Name:</span> {{ user_data.work_details.fname }} </p>
+                    <p> <span class="font-bold pr-3">Last Name:</span>{{ user_data.work_details.lname }}</p>
+                    <p> <span class="font-bold pr-3">Institution:</span>{{ user_data.work_details.institution }}</p>
                 </div>
             </div>
         </dash-card>
