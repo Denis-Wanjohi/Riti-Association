@@ -9,7 +9,7 @@ import axiosClient from '@/axios/axios';
 import { scrollUp } from '@/utilities/util';
 const applicantStore = useApplicantStore()
 const user_data = ref(null)
-user_data.value = JSON.parse(sessionStorage.getItem('applicant'))
+//user_data.value = JSON.parse(sessionStorage.getItem('applicant'))
 onMounted(()=>{
     scrollUp()
     if(sessionStorage.getItem('applicant').step != 4){
@@ -22,9 +22,8 @@ onMounted(()=>{
 function getUser(){
     axiosClient.get('/user')
     .then(res=>{
-        
         sessionStorage.setItem('applicant',JSON.stringify(res.data.user))
-        // user_data.value = res.data.user
+        user_data.value = res.data.user
     })
 }
 function registrationPage(){
@@ -39,16 +38,17 @@ function registrationPage(){
 </script>
 <template>
 <div>
-    {{ user_data.step }}
+    <!-- {{ user_data }} -->
     <heading heading="Dashboard"></heading>
-    <div v-if="user_data.step != 4"  class="flex justify-center items-center h-[70vh] ">
+    <div v-if="  user_data && user_data.step != 4"  class="flex justify-center items-center h-[70vh] ">
         <div class="w-1/4  mx-auto text-center">
             <p class="text-2xl font-bold my-10">WELCOME</p>
             <RouterLink :to=" user_data.step == 1 ? '/registration/personal-details' : user_data.step == 2 ?'/registration/education-details':'/registration/work-experience-details' ">
-                <Button severity="info"  class="font-bold text-3xl">Finish up your registration</Button>
+                <Button  severity="info"  class="font-bold text-3xl">Finish up your registration</Button>
             </RouterLink>
         </div>
     </div>
+    
     <div v-else  class="grid grid-cols-2 gap-3 h-screen p-10 cinzel_dashboard_h3">
         <dash-card h4="YOUR INFORMATION">
            

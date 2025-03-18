@@ -1,7 +1,7 @@
 <script setup>
 import LoadingButton from '@/components/loadingButton.vue';
 import Heading from '@/components/Heading.vue';
-import { Button,Dialog,FloatLabel,InputText } from 'primevue';
+import { Button,Dialog,FloatLabel,InputText,Tag } from 'primevue';
 import { ref } from 'vue';
 import axiosClient from '@/axios/axios';
 const professionalCategories = [
@@ -106,14 +106,22 @@ function onLogin(){
 <template>
     <heading heading="PROFESSIONS" class="my-10" desc="Applicants are categorized according to different professions.">
     </heading>
-    <main class="grid grid-cols-3 gap-5  w-4/5 mx-auto">
-        <div v-for="x in 20" class="border p-3 rounded-md text-center">
-            <p class="cinzel_dashboard ">Education</p>
-            <p class="py-5">Lorem ipsum dolor sit amet.</p>
-            <Button @click="seeMore" class="h-fit">  See more <i class="pi pi-arrow-up-right"></i></Button>
+    <main class="grid grid-cols-3 gap-5  w-4/5 mx-auto  mb-10 pb-10">
+        <div v-for="{title,desc,link} in professionalCategories" class="border bg-slate-100 hover:bg-slate-200 shadow-sm p-3 rounded-md text-center">
+            <div class="flex justify-center items-center">
+                <p class="cinzel_dashboard ">{{title}}</p>
+                <Tag class="mx-2 text-xs">10</Tag>
+            </div>
+            <p class="py-5">{{desc}}</p>
+            <Button @click="seeMore"  severity="info" class="h-fit">  See more <i class="pi pi-arrow-up-right"></i></Button>
         </div>
     </main>
-    <Dialog :visible="isSeeMore" header=" " class="w-1/3" modal="true">
+    <Dialog :visible="isSeeMore" header=" " class="w-1/3" modal :closable="false">
+        <template  #header>
+            <div class="flex justify-end mr-5 w-full">
+                <i class="pi pi-times bg-slate-200 p-1 rounded-full" size="large" @click="isSeeMore = false"></i>
+            </div>
+        </template>
         <div>
             <p class="text-center cinzel_dashboard mb-3">L O G I N</p>
             <p class="text-center text-sm text-gray-400">Must be an employer</p>

@@ -63,6 +63,12 @@ const router = createRouter({
       path:'/applicants',
       name:'applicants',
       component: ()=> import('@/views/ApplicantsView.vue')
+    },
+    // temporary
+    {
+      path:'/category',
+      name:'category',
+      component:()=>import('@/views/Portal/DashBoard/Admin/CategoryView.vue')
     }
   ],
 })
