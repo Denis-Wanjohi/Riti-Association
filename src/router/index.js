@@ -25,6 +25,11 @@ const router = createRouter({
       component:  ()=> import('../views/Auth/RegisterView.vue')
     },
     {
+      path:'/register/employer',
+      name:'employer registration',
+      component:  ()=> import('../views/Auth/EmployerRegistration.vue')
+    },
+    {
       path:'/auth/login',
       name:'login',
       component: ()=> import('../views/Auth/LoginView.vue')
@@ -35,9 +40,19 @@ const router = createRouter({
       component: ()=> import('../views/Auth/ChangePassword.vue')
     },
     {
+      path:'/employer/change-password',
+      name:'employer-change-password',
+      component: ()=> import('../views/Auth/ChangePasswordEmployer.vue')
+    },
+    {
       path:'/auth/verify',
       name:'verify',
       component: ()=> import('../views/Registration/VerifyEmail.vue')
+    },
+    {
+      path:'/registration/confirmation',
+      name:'confirmation',
+      component: ()=> import('../views/Registration/ConfirmationEmail.vue')
     },
     {
       path:'/registration/personal-details',
@@ -60,6 +75,11 @@ const router = createRouter({
       component: ()=> import ('../views/Portal/DashBoard/Dashboard.vue')
     },
     {
+      path:'/portal/applicants',
+      name:'employer:applicants',
+      component:()=> import('../views/Portal/Dashboard/Employer/ApplicantsView.vue')
+    },
+    {
       path:'/applicants',
       name:'applicants',
       component: ()=> import('@/views/ApplicantsView.vue')
@@ -68,7 +88,7 @@ const router = createRouter({
     {
       path:'/category',
       name:'category',
-      component:()=>import('@/views/Portal/DashBoard/Admin/CategoryView.vue')
+      component:()=>import('@/views/Portal/DashBoard/Employer/CategoryView.vue')
     }
   ],
 })
