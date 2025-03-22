@@ -7,6 +7,8 @@ import { DataTable,Column,IconField,InputIcon,InputText,Button,Dialog } from 'pr
 import { FilterMatchMode } from '@primevue/core/api';
 import { ref, watch } from 'vue';
 import axiosClient from '@/axios/axios';
+import { useRoute } from 'vue-router';
+const route = useRoute()
 const isViewMore = ref(false)
 const isViewApplicant = ref(false)
 const filters = ref({
@@ -94,7 +96,7 @@ const applicantPhone = (phoneNumber)=>{
 </script>
 
 <template>
-    <heading heading="Media, Advertising and Communications"></heading>
+    <heading :heading="route.params.category"></heading>
     <div>
         <p class="text-center">
             Below is a list of applicants in this category

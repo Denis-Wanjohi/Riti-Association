@@ -1,7 +1,7 @@
 <script setup>
 import axiosClient from '@/axios/axios';
 import Heading from '@/components/Heading.vue';
-import { FloatLabel,InputText,Button,Toast } from 'primevue';
+import { FloatLabel,InputText,Button,Toast,Select } from 'primevue';
 import { onMounted, ref } from 'vue';
 import LoadingButton from '@/components/loadingButton.vue';
 import { useToast } from 'primevue';
@@ -14,6 +14,7 @@ const user = ref({
     highestLevel:null,
     collage:null,
     course:null,
+    category:null,
     grade:null,
     year:null,
     highSchool:null,
@@ -21,18 +22,48 @@ const user = ref({
     highGrade:null,
     
 })
-
+const categories = [
+    { label: 'Media & Advertising' },
+    { label: 'Healthcare' },
+    { label: 'IT' },
+    { label: 'Sales & Marketing' },
+    { label: 'Hospitality & Tourism' },
+    { label: 'Transport & Logistics' },
+    { label: 'Accounting & Auditing' },
+    { label: 'Human Resources' },
+    { label: 'Legal Services' },
+    { label: 'Manufacturing & Production' },
+    { label: 'Engineering & Construction' },
+    { label: 'Agriculture and Agribusiness' },
+    { label: 'Banking & Finance' },
+    { label: 'Education & Training' },
+    { label: 'Energy & Utilities' },
+]
 onMounted(()=>{
     scrollUp()
 })
 
 const onSubmit = ()=>{
+    // alert()
     if (Object.values(user.value).some(value => !value)) {
         toast.add({severity:'error',summary:'FORM ERRORS',detail:'Please make sure you fill the whole form ',life:5000})
         return;
     }
     isSubmiting.value = true
-    axiosClient.post('/education-details',user.value)
+    // user.value = user.value.category.value
+  
+    let data = {
+        highestLevel:user.value.highestLevel,
+        collage:user.value.collage,
+        course:user.value.course,
+        category:user.value.category.label,
+        grade:user.value.grade,
+        year:user.value.year,
+        highSchool:user.value.highSchool,
+        highYear:user.value.highYear,
+        highGrade:user.value.highGrade,
+    }
+    axiosClient.post('/education-details',data)
     .then(res=>{
         isSubmiting.value = false
         if(res.data.message == 'updated'){
@@ -47,6 +78,7 @@ const onSubmit = ()=>{
 }
 </script>
 <template>
+    <Toast></Toast>
     <div>
         <heading heading="EDUCATION DETAILS"></heading>
         <form class="w-3/4 mx-auto mb-[150px]" @submit.prevent="onSubmit">
@@ -63,6 +95,11 @@ const onSubmit = ()=>{
                 <FloatLabel variant="on" >
                     <InputText id="course" required  class="w-3/4" v-model="user.course" type="text" />
                     <label for="course">Course</label>
+                </FloatLabel>
+                <FloatLabel variant="on" >
+                    <Select :options="categories" v-model="user.category" optionLabel="label" class="w-3/4" />
+                    <!-- <InputText id="course" required  class="w-3/4" v-model="user.course" type="text" /> -->
+                    <label for="course">Category</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
                     <InputText id="grade" required  class="w-3/4" v-model="user.grade" type="text" />

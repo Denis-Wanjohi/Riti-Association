@@ -7,6 +7,8 @@ import { onMounted, ref } from 'vue';
 import router from '@/router';
 import axiosClient from '@/axios/axios';
 import { scrollUp } from '@/utilities/util';
+import LoadingButton from '@/components/loadingButton.vue'
+
 const applicantStore = useApplicantStore()
 const user_data = ref(null)
 //user_data.value = JSON.parse(sessionStorage.getItem('applicant'))
@@ -40,6 +42,9 @@ function registrationPage(){
 <div>
     <!-- {{ user_data }} -->
     <heading heading="Dashboard"></heading>
+    <div v-if="user_data == null">
+        <loading-button/>
+    </div>
     <div v-if="  user_data && user_data.step != 4"  class="flex justify-center items-center h-[70vh] ">
         <div class="w-1/4  mx-auto text-center">
             <p class="text-2xl font-bold my-10">WELCOME</p>
@@ -49,7 +54,7 @@ function registrationPage(){
         </div>
     </div>
     
-    <div v-else  class="grid grid-cols-2 gap-3 h-screen p-10 cinzel_dashboard_h3">
+    <div v-if="user_data && user_data.step == 4"  class="grid grid-cols-2 gap-3 h-[150vh] p-10 cinzel_dashboard_h3">
         <dash-card h4="YOUR INFORMATION">
            
             <div class="">
@@ -127,6 +132,7 @@ function registrationPage(){
                     <p> <span class="font-bold pr-3">First Name:</span> {{ user_data.work_details.fname }} </p>
                     <p> <span class="font-bold pr-3">Last Name:</span>{{ user_data.work_details.lname }}</p>
                     <p> <span class="font-bold pr-3">Institution:</span>{{ user_data.work_details.institution }}</p>
+                    <p> <span class="font-bold pr-3">Contact:</span>{{ user_data.work_details.refereeContact }}</p>
                 </div>
             </div>
         </dash-card>

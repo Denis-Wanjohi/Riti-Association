@@ -19,6 +19,7 @@ const user = ref({
     fname:null,
     lname:null,
     institution:null,
+    refereeContact:null
     
 })
 
@@ -104,6 +105,10 @@ const onSubmit = ()=>{
                 <FloatLabel variant="on" >
                     <InputText id="institution"  required class="w-3/4" v-model="user.institution" type="text" />
                     <label for="institution">Institution</label>
+                </FloatLabel>
+                <FloatLabel variant="on" >
+                    <InputText id="contact"  required class="w-3/4" v-model="user.refereeContact" type="text" />
+                    <label for="contact">Contact(email/phone number)</label>
                 </FloatLabel>
             </div>
 

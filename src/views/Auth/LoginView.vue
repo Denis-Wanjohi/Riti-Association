@@ -22,6 +22,11 @@ const user = ref({
 const onSubmit = ()=>{
     isSubmitting.value = true
     if(step.value == 0){
+
+        if(user.value.email == "admin@gmail.com"){
+            router.push('/login/admin')
+            return;
+        }
         let data = {
             email:user.value.email,
             step:step.value,
@@ -41,7 +46,6 @@ const onSubmit = ()=>{
                     unverifiedEmail.value = false
                 },5000)
             }
-            // step.value = 1
         })
         .catch(err=>{
             console.error(err)
@@ -89,7 +93,6 @@ const onSubmit = ()=>{
 onMounted(()=>{
     if(route.query.e != null){
         user.value.email = route.query.e
-        // console.log(user.value)
         onSubmit()
     }
    

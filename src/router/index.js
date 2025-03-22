@@ -70,6 +70,11 @@ const router = createRouter({
       component: ()=> import('../views/Portal/Registration/WorkExperienceDetails.vue')
     },
     {
+      path:'/login/admin',
+      name:'admin-login',
+      component:()=>import('@/views/Auth/LoginAdminView.vue')
+    },
+    {
       path:'/portal/dashboard',
       name:'portal-dashboard',
       component: ()=> import ('../views/Portal/DashBoard/Dashboard.vue')
@@ -77,17 +82,32 @@ const router = createRouter({
     {
       path:'/portal/applicants',
       name:'employer:applicants',
-      component:()=> import('../views/Portal/Dashboard/Employer/ApplicantsView.vue')
+      // component:()=> import('../views/Portal/Dashboard/Employer/ApplicantsView.vue')
     },
     {
       path:'/applicants',
       name:'applicants',
       component: ()=> import('@/views/ApplicantsView.vue')
     },
+    {
+      path:'/dashboard/admin',
+      name:'dashboard-admin',
+      component:()=> import('../views/Portal/DashBoard/Admin/DashboardView.vue')
+    },
+    {
+      path:'/dashboard/employer',
+      name:'dashboard-employer',
+      component:()=> import('../views/Portal/DashBoard/Employer/ApplicantsView.vue')
+    },
     // temporary
     {
       path:'/category',
       name:'category',
+      component:()=>import('@/views/Portal/DashBoard/Employer/CategoryView.vue')
+    },
+    {
+      path:'/dashboard/category/:category',
+      name:'category-item',
       component:()=>import('@/views/Portal/DashBoard/Employer/CategoryView.vue')
     }
   ],

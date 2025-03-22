@@ -4,7 +4,7 @@ const {h4} = defineProps({h4:String})
 <template>
     <div class="border rounded-xl   h-full overflow-hidden  " >
         <p class="text-center cinzel_dashboard cinzel_dashboard_h3 text-2xl shadow bg-slate-100  h-fit">{{ h4 }}</p>
-        <div class="overflow-auto h-full pb-10">
+        <div class="overflow-auto h-full pb-10 bg-blue-200/10">
             <slot></slot>
         </div>
     </div>

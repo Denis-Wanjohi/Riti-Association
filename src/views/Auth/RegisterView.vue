@@ -72,15 +72,12 @@ const register = ()=>{
     <div class="h-screen">
         <Toast></Toast>
         <div class="w-3/4 mx-auto">
-            <heading heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="Registration form"></heading>
+            <heading heading=
+            "RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="Registration form"></heading>
            <!-- {{ user.gender.label }} -->
              <!-- <Button @click="register">hello</Button> -->
             <form @submit.prevent="register" class=" mt-10">
-                <!-- <input-field-reg for-value="fullnames" :model-value="user.fullname" label-value="Fullname" type-value="text"></input-field-reg> -->
-                <!-- <input-field-reg for-value="email" :model-value="user.email" label-value="Email" type-value="email"></input-field-reg> -->
-                <!-- <input-field-reg for-value="phone" :model-value="user.phone" label-value="Phone Number" type-value="tel"></input-field-reg> -->
-                <!-- <input-field-reg for-value="idNo" :model-value="user.idNumber" label-value="Identification Number" type-value="password"></input-field-reg> -->
-                
+              
                 <div class="grid grid-cols-2 gap-y-10">
                     <FloatLabel variant="on" >
                         <InputText id="fullNames" required class="w-3/4" v-model="user.fullname" type="text" />

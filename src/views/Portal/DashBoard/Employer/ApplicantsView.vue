@@ -2,7 +2,7 @@
 import LoadingButton from '@/components/loadingButton.vue';
 import Heading from '@/components/Heading.vue';
 import { Button,Dialog,FloatLabel,InputText,Tag } from 'primevue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import axiosClient from '@/axios/axios';
 import router from '@/router';
 import { formLink } from '@/utilities/util';
@@ -92,6 +92,9 @@ const user = ref({
 function seeMore(){
     isSeeMore.value = true
 }
+onMounted(()=>{
+    
+})
 
 </script>
 <template>
@@ -125,6 +128,7 @@ function seeMore(){
                     <InputText id="password" class="mx-auto" type="password" required></InputText>
                     <label for="password">Password</label>
                 </FloatLabel>
+                <p>Are you an employer? <router-link to="/">Get access</router-link></p>
                 <div class="w-full flex justify-center">
                   <Button v-if="!isSubmiting" type="submit" class="w-1/2 mx-auto">Login</Button>  
                   <loadingButton v-else></loadingButton>
