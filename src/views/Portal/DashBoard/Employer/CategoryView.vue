@@ -3,12 +3,15 @@ import Heading from '@/components/Heading.vue';
 import DashCard from '@/components/dash_card.vue';
 import CategoryCard from '@/components/CategoryCard.vue';
 import LoadingButton from '@/components/loadingButton.vue';
-import { DataTable,Column,IconField,InputIcon,InputText,Button,Dialog } from 'primevue';
+import { DataTable,Column,IconField,InputIcon,InputText,Button,Dialog,Toast, useToast } from 'primevue';
 import { FilterMatchMode } from '@primevue/core/api';
-import { ref, watch } from 'vue';
+import { ref, watch,onMounted } from 'vue';
 import axiosClient from '@/axios/axios';
 import { useRoute } from 'vue-router';
+import { fromLink } from '@/utilities/util';
 const route = useRoute()
+const toast = useToast()
+const isSubmitting = ref(false)
 const isViewMore = ref(false)
 const isViewApplicant = ref(false)
 const filters = ref({
@@ -22,59 +25,20 @@ const filters = ref({
     university: { value: null, matchMode: FilterMatchMode.CONTAINS },
     year: { value: null, matchMode: FilterMatchMode.CONTAINS },
 });
-const applicants  = [
-    {
-        'membershipID' : 'RAUL/0000/25',
-        'fname' : 'Tommy',
-        'profession' : 'Journalism',
-        'gender' : 'male',
-        'course' : 'JOURNALISM AND MASS COMMUNICATION',
-        'university': 'UNIVERSITY OF IRINGA',
-        'grade': 'First class',
-        'year': '2016',
-    },
-    {
-        'membershipID' : 'RAUL/0001/26',
-        'fname' : 'Sarah',
-        'profession' : 'Marketing',
-        'gender' : 'female',
-        'course' : 'MARKETING AND ADVERTISING',
-        'university': 'UNIVERSITY OF DAR ES SALAAM',
-        'grade': 'Second class',
-        'year': '2018',
-    },
-    {
-        'membershipID' : 'RAUL/0002/27',
-        'fname' : 'James',
-        'profession' : 'Public Relations',
-        'gender' : 'male',
-        'course' : 'PUBLIC RELATIONS AND COMMUNICATION',
-        'university': 'UNIVERSITY OF DODOMA',
-        'grade': 'First class',
-        'year': '2017',
-    },
-    {
-        'membershipID' : 'RAUL/0003/28',
-        'fname' : 'Emily',
-        'profession' : 'Advertising',
-        'gender' : 'female',
-        'course' : 'ADVERTISING AND MEDIA STUDIES',
-        'university': 'UNIVERSITY OF MWANZA',
-        'grade': 'Second class',
-        'year': '2019',
-    },
-]
+const applicants  = ref([])
 const applicant = ref(null)
+const applicantID = ref(null)
 watch(isViewApplicant,()=>{
     if(isViewApplicant.value == true){
         getApplicant()
     }else{
         applicant.value = null
+        applicantID.value = null
     }
     
 })
 const getApplicant = ()=>{
-    axiosClient.get('/applicant?id=RAUP/0000/25')
+    axiosClient.get('/applicant?id='+applicantID.value)
     .then(res=>{
         applicant.value = res.data.applicant[0]
     })
@@ -92,10 +56,38 @@ const applicantPhone = (phoneNumber)=>{
   const masked = start + "*****" + end; 
   return masked;
 }
-
+onMounted(()=>{
+    let data = fromLink(route.params.category)
+    axiosClient.post('/category-data',{category:data})
+    .then(res=>{
+        res.data.applicants.forEach(element => {
+            applicants.value.push(element)
+        });
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
+const getApplicantDetails = ()=>{
+    isSubmitting.value = true
+    axiosClient.post('/getApplicatDetails',{id:applicantID.value})
+    .then(res=>{
+        if(res.data.message == 'Request received'){
+            toast.add({severity:'success',summary:'REQUEST SUCCESSFULLY SENT',detail:'Request has been received.Check your company email for more information.',life:'8000'})
+            isSubmitting.value = false
+            isViewApplicant.value = false
+        }
+        isSubmitting.value = false
+    })
+    .catch(err=>{
+        isSubmitting.value = false
+        console.error(err)
+    })
+}
 </script>
 
 <template>
+    <Toast></Toast>
     <heading :heading="route.params.category"></heading>
     <div>
         <p class="text-center">
@@ -127,7 +119,6 @@ const applicantPhone = (phoneNumber)=>{
                         <p class="text-nowrap font-semibold text-slate-800">First Name</p>
                     </template>
                 </Column>
-                <Column field="profession" sortable  header="Profession"></Column>
                 <Column field="gender" header="Gender"></Column>
                 <Column field="course" sortable  header="Course"></Column>
                 <Column field="university" header="Univesity/Collage"></Column>
@@ -138,8 +129,8 @@ const applicantPhone = (phoneNumber)=>{
                     </template>
                 </Column>
                 <Column header="Action">
-                    <template #body>
-                        <Button severity="info" @click="isViewApplicant = true"><i class="pi pi-eye"></i> </Button>
+                    <template #body="slotProps">
+                        <Button severity="info" @click="isViewApplicant = true,applicantID = slotProps.data.membershipID"><i class="pi pi-eye"></i> </Button>
                     </template>
                 </Column>
             </DataTable>
@@ -231,14 +222,16 @@ const applicantPhone = (phoneNumber)=>{
                                 <p> <span class="font-bold pr-3">First Name:</span> {{ applicant.work_details.fname }} </p>
                                 <p> <span class="font-bold pr-3">Last Name:</span>{{ applicant.work_details.lname }}</p>
                                 <p> <span class="font-bold pr-3">Institution:</span>{{ applicant.work_details.institution }}</p>
+                                <p> <span class="font-bold pr-3">Contacts:</span>{{ applicant.work_details.refereeContact }}</p>
                             </div>
                         </div>
                     </category-card>
                 </div>
             </div>
             <template #footer>
-                <div class="w-full py-8 flex justify-center">
-                    <Button v-if="applicant" class="w-3/4 font-bold" severity="info">Get contact details</Button>
+                <div class="w-full py-8 flex justify-center" v-if="applicant">
+                    <Button v-if="!isSubmitting" class="w-3/4 font-bold" @click="getApplicantDetails" severity="info">Get contact details</Button>
+                    <loading-button v-else></loading-button>
                 </div>
             </template>
         </Dialog>

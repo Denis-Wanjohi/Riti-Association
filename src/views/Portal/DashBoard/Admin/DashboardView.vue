@@ -25,6 +25,7 @@ const applicants_count = ref(0)
 const applicants = ref([])
 const employers = ref([])
 const newEmployers = ref([])
+const requests = ref([])
 const applicantPhone = (phoneNumber)=>{
     if (typeof phoneNumber !== 'string' || phoneNumber.length !== 10) {
     return "-- -- -- --"; 
@@ -47,6 +48,9 @@ onMounted(()=>{
         })
         res.data.employers.forEach(element=>{
             employers.value.push(element)
+        })
+        res.data.requests.forEach(element=>{
+            requests.value.push(element)
         })
         applicants_count.value = res.data.applicant_count
         employers_count.value = res.data.employer_count
@@ -81,7 +85,6 @@ onMounted(()=>{
                         </OverlayBadge>
                         <p v-else>NEW EMPLOYERS</p>
                     </Tab>
-                    <!-- <Tab value="2">Header III</Tab> -->
                 </TabList>
                 <TabPanels>
                     <TabPanel value="0">
@@ -126,7 +129,7 @@ onMounted(()=>{
                         </DataTable>
                     </TabPanel>
                     <TabPanel value="2">
-                        <DataTable v-model:filters="filters" :value="applicants"   paginator :rows="20" sortMode="multiple" removableSort  size="small" stripedRows :loading="loading"  tableStyle="min-width: 50rem"
+                        <DataTable v-model:filters="filters" :value="requests"   paginator :rows="20" sortMode="multiple" removableSort  size="small" stripedRows :loading="loading"  tableStyle="min-width: 50rem"
                                 :globalFilterFields="['membershipID', 'fname', 'profession', 'gender','course','university','grade','year']"
                         >
                             <template #header>
@@ -141,20 +144,20 @@ onMounted(()=>{
                             </template>
                             <template #empty> No applicant found. </template>
                             <template #loading> Loading applicants data. Please wait. </template>
-                            <Column field="membershipID" sortable >
+                            <Column field="employerID" sortable >
                                 <template #header>
                                     <p class="text-nowrap font-semibold text-slate-800">Employer ID</p>
                                 </template>
                             </Column>
-                            <Column field="fname">
+                            <Column field="employerName">
                                 <template #header>
-                                    <p class="text-nowrap font-semibold text-slate-800">Name</p>
+                                    <p class="text-nowrap font-semibold text-slate-800">Employer</p>
                                 </template>
                             </Column>
-                            <Column field="profession" sortable  header="Company"></Column>
-                            <Column field="gender" header="Applicant ID"></Column>
-                            <Column field="course" sortable  header="Aplicant Name"></Column>
-                            <Column field="university" header="Category"></Column>
+                            <Column field="company" sortable  header="Company"></Column>
+                            <Column field="membershipID" header="Applicant ID"></Column>
+                            <Column field="applicantName" sortable  header="Aplicant"></Column>
+                            <Column field="category" header="Category"></Column>
                             
                             <Column header="Action">
                                 <template #body>

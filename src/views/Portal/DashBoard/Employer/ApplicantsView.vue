@@ -93,7 +93,13 @@ function seeMore(){
     isSeeMore.value = true
 }
 onMounted(()=>{
-    
+    axiosClient.get('/applicants-stats')
+    .then(res=>{
+
+    })
+    .catch(err=>{
+        console.error(err)
+    })
 })
 
 </script>

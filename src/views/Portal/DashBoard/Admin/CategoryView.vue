@@ -62,6 +62,7 @@ const applicants  = [
         'year': '2019',
     },
 ]
+
 const applicant = ref(null)
 watch(isViewApplicant,()=>{
     if(isViewApplicant.value == true){

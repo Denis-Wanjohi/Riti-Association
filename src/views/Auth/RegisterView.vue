@@ -64,7 +64,11 @@ const register = ()=>{
     })
     .catch(err=>{
         isSubmitting.value = false
-        console.error(err)
+        if(err.response.data.message == 'The email has already been taken.'){
+            toast.add({severity:'error',summary:'EMAIL ERROR',detail:'The email has already been taken!!',life:8000})
+        }else{
+            toast.add({severity:'warn',summary:'FORM ERROR',detail:'Please re-submit the form.Thank you',life:8000})
+        }
     })
 }
 </script>
