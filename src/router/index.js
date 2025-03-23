@@ -131,7 +131,16 @@ const publicPaths = [
   'about-us',
   'applicant-registration',
   'employer-registration',
-  'login'
+  'login',
+  'aplicants',
+  'work experience details',
+  'education details',
+  'personal details',
+  'confirmation',
+  'verify',
+  //check well
+  'employer-change-password',
+  'change-password'
 
 ]
 
