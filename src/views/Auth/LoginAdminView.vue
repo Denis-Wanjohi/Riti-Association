@@ -19,12 +19,14 @@ const onSubmit = ()=>{
         toast.add({severity:"error",summary:"FORM DATA",detail:"Please make sure all fields in the form are not empty",life:5000})
         return;
     }
+    isSubmitting.value = true
     axiosClient.post('/login/admin',user.value)
     .then(res=>{
         sessionStorage.setItem('token',res.data.token)
         sessionStorage.setItem('admin',JSON.stringify(res.data.admin))
         useAdminStore().setAdmin(res.data.admin)
         router.push('/dashboard/admin')
+        isSubmitting.value = false
     })
     .catch(err=>{
         console.log(err.status)
@@ -32,6 +34,7 @@ const onSubmit = ()=>{
             toast.add({severity:'error',summary:'Authentication error',detail:'Credetials provided dont match our records.',life:5000})
         }
         console.error(err)
+        isSubmitting.value = false
     })
 }
 </script>
