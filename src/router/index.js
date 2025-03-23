@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { useApplicantStore } from '@/stores/applicant'
+import { ConfirmDialog } from 'primevue'
 
 
 const router = createRouter({
@@ -21,12 +22,12 @@ const router = createRouter({
     },
     {
       path:'/auth/register',
-      name:'registration',
+      name:'applicant-registration',
       component:  ()=> import('../views/Auth/RegisterView.vue')
     },
     {
       path:'/register/employer',
-      name:'employer registration',
+      name:'employer-registration',
       component:  ()=> import('../views/Auth/EmployerRegistration.vue')
     },
     {
@@ -100,11 +101,11 @@ const router = createRouter({
       component:()=> import('../views/Portal/DashBoard/Employer/ApplicantsView.vue')
     },
     // temporary
-    {
-      path:'/category',
-      name:'category',
-      component:()=>import('@/views/Portal/DashBoard/Employer/CategoryView.vue')
-    },
+    // {
+    //   path:'/category',
+    //   name:'category',
+    //   component:()=>import('@/views/Portal/DashBoard/Employer/CategoryView.vue')
+    // },
     {
       path:'/dashboard/category/:category',
       name:'category-item',
@@ -113,10 +114,80 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach(()=>{
+
+const applicantPaths= [
+  'portal-dashboard',
+]
+const adminPaths = [
+  'dashboard-admin',
+]
+const employerPath = [
+  'dashboard-employer',
+  'category-item',
+]
+const publicPaths = [
+  'category-item',
+  'home',
+  'about-us',
+  'applicant-registration',
+  'employer-registration',
+  'login'
+
+]
+
+router.beforeEach((to,from,next)=>{
+
+  let user;
+  if(sessionStorage.getItem('admin')){
+    user = "admin"
+  }else if(sessionStorage.getItem('employer')){
+    user = "employer"
+  }else if(sessionStorage.getItem('applicant')){
+    user = "applicant"
+  }
+
+  const authRequired = !publicPaths.includes(to.name);
+  let isAuthenticated = false
+  const token = sessionStorage.getItem('token')
+  if(token != null){
+    isAuthenticated = true
+  }
+  console.log(isAuthenticated)
+  console.log(authRequired)
+  if(isAuthenticated){
+    if(user == 'admin'){
+      if(!adminPaths.includes(to.name)){
+        return next('/dashboard/admin')
+      }else{
+        return next()
+      }
+    }else if(user == 'applicant'){
+      if(!applicantPaths.includes(to.name)){
+        return next('/portal/dashboard')
+      }else{
+        return next()
+      }
+    }else if(user == 'employer'){
+      if(!employerPath.includes(to.name)){
+        return next('/dashboard/employer')
+      }else{
+        return next()
+      }
+    }
+  }else{
+    console.log(to.path)
+    if(authRequired){
+      next('/auth/login')
+    }
+    next()
+    
+  
+  }
   if(sessionStorage.getItem('applicant')){
     useApplicantStore().setUser(JSON.stringify(sessionStorage.getItem('applicant')))
   }
 })
+
+
 
 export default router
