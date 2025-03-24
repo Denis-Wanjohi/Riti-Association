@@ -1,7 +1,10 @@
+import EmployerRegistration from "@/views/Auth/EmployerRegistration.vue";
+import PersonalDetails from "@/views/Portal/Registration/PersonalDetails.vue";
 import axios from "axios";
+import { list } from "postcss";
 
 const axiosClient = axios.create({
-    baseURL:'https://fac3-102-215-12-244.ngrok-free.app/api'
+    baseURL:'https://8a74-102-215-12-244.ngrok-free.app/api'
     // baseURL:'http://localhost:8000/api/'
 })
 axiosClient.interceptors.request.use(config =>{
@@ -13,3 +16,5 @@ axiosClient.interceptors.request.use(config =>{
 })
 
 export default axiosClient;
+
+   
