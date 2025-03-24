@@ -128,6 +128,8 @@ onMounted(() => {
 
 </script>
 <template>
+    <p class="text-center cursor-pointer my-10" @click="router.push('/')"> <i class="pi pi-home mx-4">Home</i></p>
+
     <heading heading="PROFESSIONS" class="my-10" desc="Applicants are categorized according to different professions.">
     </heading>
     <main class="grid grid-cols-3 gap-5  w-4/5 mx-auto  mb-10 pb-10">

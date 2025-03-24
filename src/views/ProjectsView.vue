@@ -1,5 +1,10 @@
 <script setup>
+import ProjectSection from '@/components/ProjectSection.vue';
+import Statistics from '@/components/Statistics.vue';
 </script>
 <template>
-   <p>projects</p> 
+   <div>
+      <project-section></project-section>
+      <statistics></statistics>
+   </div>
 </template>

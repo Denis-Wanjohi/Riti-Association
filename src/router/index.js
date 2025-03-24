@@ -109,6 +109,11 @@ const router = createRouter({
     {
       path:'/dashboard/employer',
       name:'dashboard-employer',
+      component:()=> import('../views/Portal/DashBoard/Employer/DashboardView.vue')
+    },
+    {
+      path:'/dashboard/professions',
+      name:'professions',
       component:()=> import('../views/Portal/DashBoard/Employer/ApplicantsView.vue')
     },
     // temporary
@@ -134,6 +139,7 @@ const adminPaths = [
 ]
 const employerPath = [
   'dashboard-employer',
+  'professions',
   'category-item',
 ]
 const publicPaths = [
