@@ -10,7 +10,7 @@
             <div v-for="item in items" class="mx-auto font-serif">
                 <!-- <template #item="{ item }"> -->
                 <p @click="router.push(`${item.link}`)"
-                    class="px-5 cursor-pointer inset-shadow-sm inset-shadow-indigo-500  hover:bg-gray-600 py-1 rounded-sm  font-bold text-xl text-white">{{
+                    class="px-5 cursor-pointer  hover:bg-gray-600 py-1 rounded-sm  font-bold text-xl text-white">{{
                         item.label }}</p>
                 <!-- </template> -->
                 <!-- </Menubar> -->
