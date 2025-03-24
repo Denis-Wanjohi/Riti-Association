@@ -139,6 +139,7 @@ const publicPaths = [
   'confirmation',
   'verify',
   'admin-login',
+  'applicants',
   //check well
   'employer-change-password',
   'change-password'
@@ -162,8 +163,7 @@ router.beforeEach((to,from,next)=>{
   if(token != null){
     isAuthenticated = true
   }
-  console.log(isAuthenticated)
-  console.log(authRequired)
+
   if(isAuthenticated){
     if(user == 'admin'){
       if(!adminPaths.includes(to.name)){
@@ -185,7 +185,6 @@ router.beforeEach((to,from,next)=>{
       }
     }
   }else{
-    console.log(to.path)
     if(authRequired){
       next('/auth/login')
     }

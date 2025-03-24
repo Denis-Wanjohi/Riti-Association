@@ -110,9 +110,7 @@ function seeMore() {
 onMounted(() => {
     axiosClient.get('/category/stat')
         .then(res => {
-
             const countsArray = Object.entries(res.data.count).map(([key, value]) => ({ title: key, count: value }));
-            // console.log(countsArray)
             professionalCategories.value.forEach(element => {
                 countsArray.forEach(el => {
                     if (el.title.match(element.title)) {
@@ -140,8 +138,8 @@ onMounted(() => {
                 <Tag class="mx-2 text-xs">{{ count }}</Tag>
             </div>
             <p class="py-5">{{ desc }}</p>
-            <Button @click="router.push('/dashboard/category/' + formLink(title))" severity="info" class="h-fit"> See more <i
-                    class="pi pi-arrow-up-right"></i></Button>
+            <Button @click="router.push('/dashboard/category/' + formLink(title))" severity="info" class="h-fit"> See
+                more <i class="pi pi-arrow-up-right"></i></Button>
         </div>
     </main>
     <Dialog :visible="isSeeMore" header=" " class="w-1/3" modal :closable="false">

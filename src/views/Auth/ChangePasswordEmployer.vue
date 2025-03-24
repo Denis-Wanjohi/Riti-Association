@@ -59,7 +59,6 @@ const onSubmit = ()=>{
 </script>
 <template>
     <Toast></Toast>
-    {{ route.query }}
     <div class="h-screen">
         <div class="w-3/4 mx-auto">
             <heading heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="CREATE PASSWORD"></heading>

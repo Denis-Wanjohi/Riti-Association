@@ -15,6 +15,7 @@ const toast = useToast()
 const isSubmitting = ref(false)
 const isViewMore = ref(false)
 const isViewApplicant = ref(false)
+const loading = ref(false)
 const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     membershipID: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -58,15 +59,18 @@ const applicantPhone = (phoneNumber) => {
     return masked;
 }
 onMounted(() => {
+    loading.value = true
     let data = fromLink(route.params.category)
     axiosClient.post('/category-data', { category: data })
         .then(res => {
             res.data.applicants.forEach(element => {
                 applicants.value.push(element)
+                loading.value = false
             });
         })
         .catch(err => {
             console.log(err)
+            loading.value = false
         })
 })
 const getApplicantDetails = () => {
@@ -171,7 +175,7 @@ const getApplicantDetails = () => {
                             <div class="p-5 grid grid-cols-2 gap-4">
                                 <p> <span class="font-bold pr-3">Nationality:</span> {{
                                     applicant.personal_details.nationality
-                                    }}</p>
+                                }}</p>
                                 <p> <span class="font-bold pr-3">Marital Status:</span>{{
                                     applicant.personal_details.status }}
                                 </p>
@@ -180,7 +184,7 @@ const getApplicantDetails = () => {
                                 </p>
                                 <p> <span class="font-bold pr-3">Interview Mode:</span>{{
                                     applicant.personal_details.interview
-                                    }}</p>
+                                }}</p>
                             </div>
                             <p class="text-center  cinzel_dashboard_h3 underline">Residential Address</p>
                             <div class="p-5 grid grid-cols-2 gap-4">
@@ -191,7 +195,7 @@ const getApplicantDetails = () => {
                                 </p>
                                 <p> <span class="font-bold pr-3">Consistency:</span>{{
                                     applicant.personal_details.constituency
-                                    }}</p>
+                                }}</p>
                                 <p> <span class="font-bold pr-3">Ward:</span>{{ applicant.personal_details.ward }}</p>
                             </div>
                             <p class="text-center cinzel_dashboard_h3 underline">Next of Kin</p>
@@ -201,7 +205,7 @@ const getApplicantDetails = () => {
                                 <p> <span class="font-bold pr-3">Email:</span>{{ applicant.personal_details.kinEmail }}
                                 </p>
                                 <p> <span class="font-bold pr-3">Phone No.:</span>{{ applicant.personal_details.kinPhone
-                                    }}</p>
+                                }}</p>
                                 <p> <span class="font-bold pr-3">Relationship:</span>{{
                                     applicant.personal_details.kinRelationship }}</p>
                             </div>
@@ -226,12 +230,12 @@ const getApplicantDetails = () => {
                             <p class="text-center cinzel_dashboard_h3 mt-5 underline">HIGH SCHOOL</p>
                             <div class="p-5 grid grid-cols-2 gap-4">
                                 <p> <span class="font-bold pr-3">Name:</span> {{ applicant.education_details.highSchool
-                                    }}</p>
+                                }}</p>
                                 <p> <span class="font-bold pr-3">Year Completed:</span>{{
                                     applicant.education_details.highYear
-                                    }}</p>
+                                }}</p>
                                 <p> <span class="font-bold pr-3">Grade:</span>{{ applicant.education_details.highGrade
-                                    }}</p>
+                                }}</p>
                             </div>
                         </div>
                     </category-card>
