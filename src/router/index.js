@@ -138,6 +138,7 @@ const publicPaths = [
   'personal details',
   'confirmation',
   'verify',
+  'admin-login',
   //check well
   'employer-change-password',
   'change-password'
