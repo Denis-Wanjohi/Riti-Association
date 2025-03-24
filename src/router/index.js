@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { useApplicantStore } from '@/stores/applicant'
 import { ConfirmDialog } from 'primevue'
+import { useUserStore } from '@/stores/user'
 
 
 const router = createRouter({
@@ -19,6 +20,16 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
+    },
+    {
+      path:'/projects',
+      name:'projects',
+      component: ()=> import('../views/ProjectsView.vue')
+    },
+    {
+      path:'/contacts',
+      name:'contacts',
+      component:()=>import('../views/ContactView.vue')
     },
     {
       path:'/auth/register',
@@ -140,6 +151,8 @@ const publicPaths = [
   'verify',
   'admin-login',
   'applicants',
+  'projects',
+  'contacts',
   //check well
   'employer-change-password',
   'change-password'
@@ -150,10 +163,13 @@ router.beforeEach((to,from,next)=>{
 
   let user;
   if(sessionStorage.getItem('admin')){
+    useUserStore().setLoggedIn(true)
     user = "admin"
   }else if(sessionStorage.getItem('employer')){
+    useUserStore().setLoggedIn(true)
     user = "employer"
   }else if(sessionStorage.getItem('applicant')){
+    useUserStore().setLoggedIn(true)
     user = "applicant"
   }
 

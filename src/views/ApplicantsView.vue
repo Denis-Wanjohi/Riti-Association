@@ -8,6 +8,7 @@ import axiosClient from '@/axios/axios';
 import { useEmployerStore } from '@/stores/employer';
 import { formLink } from '@/utilities/util';
 import router from '@/router';
+import { useUserStore } from '@/stores/user';
 const toast = useToast()
 const professionalCategories = ref([
     {
@@ -118,7 +119,6 @@ onMounted(() => {
                 countsArray.forEach(el => {
                     if (el.title.match(element.title)) {
                         element.count = el.count
-
                     }
                 })
             })
@@ -145,6 +145,7 @@ function onLogin() {
             sessionStorage.setItem('token', res.data.token)
             sessionStorage.setItem('employer', JSON.stringify(res.data.user))
             useEmployerStore().setEmployer(res.data.user)
+            useUserStore().setLoggedIn(true)
             router.push('/dashboard/category/' + destination.value)
             destination.value = null
         })
