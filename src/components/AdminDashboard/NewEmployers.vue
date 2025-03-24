@@ -20,6 +20,7 @@ const filters = ref({
 const toast = useToast()
 const viewMore = ref(false)
 const employer = ref(null)
+const emit = defineEmits(['refresh']);
 const isAuthorizing = ref(false)
 const loading = ref(true)
 watch(viewMore,()=>{
@@ -37,9 +38,9 @@ const authorize = ()=>{
     isAuthorizing.value = true
     axiosClient.post('/validate-employer',{id:employer.value.id})
     .then(res=>{
-        validated
         if(res.data.message == 'validated'){
             toast.add({severity:'success',summary:'Employer Authorized',detail:'Employer successfully authorized',life:4000})
+            emit('refresh')
         }
         isAuthorizing.value = false
         viewMore.value = false

@@ -143,7 +143,7 @@ const dashboardData = () => {
                         <requests :requests="requests" @refresh="dashboardData"></requests>
                     </TabPanel>
                     <TabPanel value="3">
-                        <new-employers :newEmployers="newEmployers"></new-employers>
+                        <new-employers :newEmployers="newEmployers" @refresh="dashboardData"></new-employers>
                     </TabPanel>
                 </TabPanels>
             </Tabs>
