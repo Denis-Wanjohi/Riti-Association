@@ -133,6 +133,10 @@ const router = createRouter({
 
 const applicantPaths= [
   'portal-dashboard',
+  'change-password',
+  'work experience details',
+  'education details',
+  'personal details',
 ]
 const adminPaths = [
   'dashboard-admin',
@@ -150,9 +154,6 @@ const publicPaths = [
   'employer-registration',
   'login',
   'aplicants',
-  'work experience details',
-  'education details',
-  'personal details',
   'confirmation',
   'verify',
   'admin-login',
@@ -161,7 +162,7 @@ const publicPaths = [
   'contacts',
   //check well
   'employer-change-password',
-  'change-password'
+  
 
 ]
 

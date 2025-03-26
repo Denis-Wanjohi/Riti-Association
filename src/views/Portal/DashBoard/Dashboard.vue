@@ -29,11 +29,11 @@ function getUser(){
     })
 }
 function registrationPage(){
-    if(user_data.step == 0){
+    if(user_data.value.step == 0){
         router.push('/registration/personal-details')
-    }else if(user_data.step == 1){
+    }else if(user_data.value.step == 1){
         router.push('/registration/education-details')
-    }else if(user_data.step == 2){
+    }else if(user_data.value.step == 2){
         router.push('/registration/work-experience-details')
     }
 }
@@ -45,8 +45,9 @@ function registrationPage(){
     <div v-if="user_data == null">
         <loading-button/>
     </div>
+    {{ user_data }}
     <div v-if="  user_data && user_data.step != 4"  class="flex justify-center items-center h-[70vh] ">
-        <div class="w-1/4  mx-auto text-center">
+        <div class="sm:w-1/4  mx-auto text-center">
             <p class="text-2xl font-bold my-10">WELCOME</p>
             <RouterLink :to=" user_data.step == 1 ? '/registration/personal-details' : user_data.step == 2 ?'/registration/education-details':'/registration/work-experience-details' ">
                 <Button  severity="info"  class="font-bold text-3xl">Finish up your registration</Button>
