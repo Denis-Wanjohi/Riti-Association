@@ -45,7 +45,6 @@ function registrationPage(){
     <div v-if="user_data == null">
         <loading-button/>
     </div>
-    {{ user_data }}
     <div v-if="  user_data && user_data.step != 4"  class="flex justify-center items-center h-[70vh] ">
         <div class="sm:w-1/4  mx-auto text-center">
             <p class="text-2xl font-bold my-10">WELCOME</p>

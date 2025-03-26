@@ -74,7 +74,7 @@ function decline() {
         .then(res => {
             isConnecting.value = false
             if (res.data.message == 'updated') {
-                toast.add({ severity: 'success', summary: 'SUCCESSFULLY DECLINED', detail: 'Applicant details wont be shared. Thank you.' })
+                toast.add({ severity: 'success', summary: 'SUCCESSFULLY DECLINED', detail: 'Applicant details wont be shared. Thank you.',life: 8000})
                 emit('refresh')
             }
         })
