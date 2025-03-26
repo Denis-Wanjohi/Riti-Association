@@ -1,5 +1,5 @@
 <script setup>
-import { FloatLabel,InputText,Button } from 'primevue';
+import { FloatLabel,InputText,Button,Toast,useToast } from 'primevue';
 import Heading from '@/components/Heading.vue';
 import { onMounted, ref } from 'vue';
 import router from '@/router';
@@ -8,6 +8,7 @@ import axiosClient from '@/axios/axios';
 import { useApplicantStore } from '@/stores/applicant';
 import { scrollUp } from '@/utilities/util';
 const isSubmitting = ref(false)
+const toast = useToast()
 const verifiedEmail = ref(false)
 const unverifiedEmail = ref(false)
 const credentialsError = ref(null)
@@ -26,6 +27,8 @@ const onSubmit = ()=>{
         if(user.value.email == "info@ritiassociation.or.ke"){
             router.push('/login/admin')
             return;
+        }else{
+            toast.add({severity:'error',summary:'INAVLID CREDENTIALS',detail:'credentials provided doesn\'t match our records.',life:7000})
         }
         let data = {
             email:user.value.email,
@@ -100,6 +103,7 @@ onMounted(()=>{
 
 </script>
 <template>
+    <Toast></Toast>
     <div class="h-screen">
         <div class="sm:w-3/4 mx-auto">
             <heading class="px-5" heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="L O G  I N"></heading>
