@@ -54,7 +54,7 @@ function registrationPage(){
         </div>
     </div>
     
-    <div v-if="user_data && user_data.step == 4"  class="grid grid-cols-2 gap-3 h-[150vh] p-10 cinzel_dashboard_h3">
+    <div v-if="user_data && user_data.step == 4"  class="grid sm:grid-cols-2 gap-3 sm:h-[150vh] sm:p-10 p-2 cinzel_dashboard_h3">
         <dash-card h4="YOUR INFORMATION">
            
             <div class="">
@@ -71,21 +71,21 @@ function registrationPage(){
         <dash-card h4="PERSONAL DETAILS INFORMATION">
           
             <div class="">
-                <div class="p-5 grid grid-cols-2 gap-4">
+                <div class="p-5 grid sm:grid-cols-2 gap-4">
                     <p> <span class="font-bold pr-3">Nationality:</span> {{ user_data.personal_details.nationality }}</p>
                     <p> <span class="font-bold pr-3">Marital Status:</span>{{ user_data.personal_details.status }}</p>
                     <p> <span class="font-bold pr-3">Dual Citizen:</span>{{ user_data.personal_details.citizen }}</p>
                     <p> <span class="font-bold pr-3">Interview Mode:</span>{{ user_data.personal_details.interview }}</p>
                 </div>
                 <p class="text-center  cinzel_dashboard_h3 underline">Residential Address</p>
-                <div class="p-5 grid grid-cols-2 gap-4">
+                <div class="p-5 grid sm:grid-cols-2 gap-4">
                     <p> <span class="font-bold pr-3">County:</span> {{ user_data.personal_details.county }}</p>
                     <p> <span class="font-bold pr-3">Sub-county:</span>{{ user_data.personal_details.subCounty }}</p>
                     <p> <span class="font-bold pr-3">Consistency:</span>{{ user_data.personal_details.constituency }}</p>
                     <p> <span class="font-bold pr-3">Ward:</span>{{ user_data.personal_details.ward }}</p>
                 </div>
                 <p class="text-center cinzel_dashboard_h3 underline">Next of Kin</p>
-                <div class="p-5 grid grid-cols-2 gap-4">
+                <div class="p-5 grid sm:grid-cols-2 gap-4">
                     <p> <span class="font-bold pr-3">Name:</span> {{ user_data.personal_details.kinName }}</p>
                     <p> <span class="font-bold pr-3">Email:</span>{{ user_data.personal_details.kinEmail }}</p>
                     <p> <span class="font-bold pr-3">Phone No.:</span>{{ user_data.personal_details.kinPhone }}</p>
@@ -96,7 +96,7 @@ function registrationPage(){
         <dash-card h4="EDUCATION INFORMATION">
             <div class="">
                 <p class="text-center cinzel_dashboard_h3 mt-5 underline">HIGHER EDUCATION</p>
-                <div class="p-5 grid grid-cols-2 gap-4">
+                <div class="p-5 grid sm:grid-cols-2 gap-4">
                     <p> <span class="font-bold pr-3">Highest level:</span> {{ user_data.education_details.highestLevel }}</p>
                     <p> <span class="font-bold pr-3">University/Collage:</span>{{ user_data.education_details.collage }}</p>
                     <p> <span class="font-bold pr-3">Course:</span>{{ user_data.education_details.course }}</p>
@@ -104,7 +104,7 @@ function registrationPage(){
                     <p> <span class="font-bold pr-3">Graduation Year:</span>{{ user_data.education_details.year }}</p>
                 </div>
                 <p class="text-center cinzel_dashboard_h3 mt-5 underline">HIGH SCHOOL</p>
-                <div class="p-5 grid grid-cols-2 gap-4">
+                <div class="p-5 grid sm:grid-cols-2 gap-4">
                     <p> <span class="font-bold pr-3">Name:</span> {{ user_data.education_details.highSchool }}</p>
                     <p> <span class="font-bold pr-3">Year Completed:</span>{{ user_data.education_details.highYear }}</p>
                     <p> <span class="font-bold pr-3">Grade:</span>{{ user_data.education_details.highGrade }}</p>
@@ -116,7 +116,7 @@ function registrationPage(){
                 
                 <p class="text-center my-5"> <span class="font-bold pr-3">Years of Experience:</span> {{ user_data.work_details.yearsOfExperience }} years</p>
                 <p class="text-center cinzel_dashboard_h3 mt-5 underline">Institutions/Companies</p>
-                <div class="p-5 grid grid-cols-2 gap-4">
+                <div class="p-5 grid sm:grid-cols-2 gap-4">
                     <p> <span class="font-bold pr-3">Name:</span> {{ user_data.work_details.company }}</p>
                     <p> <span class="font-bold pr-3">Job Title:</span>{{ user_data.work_details.jobTitle }}</p>
                     <p> <span class="font-bold pr-3">From:</span>09/08/23</p>
@@ -128,7 +128,7 @@ function registrationPage(){
                 </div>
 
                 <p class="text-center cinzel_dashboard_h3 mt-5 underline">Referees</p>
-                <div class="p-5 grid grid-cols-2 gap-4">
+                <div class="p-5 grid sm:grid-cols-2 gap-4">
                     <p> <span class="font-bold pr-3">First Name:</span> {{ user_data.work_details.fname }} </p>
                     <p> <span class="font-bold pr-3">Last Name:</span>{{ user_data.work_details.lname }}</p>
                     <p> <span class="font-bold pr-3">Institution:</span>{{ user_data.work_details.institution }}</p>

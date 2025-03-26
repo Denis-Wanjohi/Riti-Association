@@ -132,7 +132,7 @@ onMounted(() => {
 
     <heading heading="PROFESSIONS" class="my-10" desc="Applicants are categorized according to different professions.">
     </heading>
-    <main class="grid grid-cols-3 gap-5  w-4/5 mx-auto  mb-10 pb-10">
+    <main class="grid sm:grid-cols-3 gap-5  w-4/5 mx-auto  mb-10 pb-10">
         <div v-for="{ title, desc, link, count } in professionalCategories"
             class="border bg-slate-100 hover:bg-slate-200 shadow-sm p-3 rounded-md text-center">
             <div class="flex justify-center items-center">

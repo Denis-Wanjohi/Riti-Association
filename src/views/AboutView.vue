@@ -33,25 +33,26 @@ const coreValues = [
 <template>
   <div class="about">
     <heading class="my-10" heading="RITI Association of Unemployed Professionals" desc="WHO ARE WE"></heading>
-    <div class="flex h-[70vh]">
-      <div class="w-5/12 flex items-center">
+    <div class="sm:flex sm:flex-row-reverse sm:h-[70vh]">
+      <div class="sm:w-7/12 flex justify-center items-center">
+        <img src="/images/garden.png" class="sm:w-3/4 w-10/12" alt="">
+      </div>
+      <div class="sm:w-5/12 flex items-center">
         <div>
-          <p class="text-xl my-4  text-center w-3/4 mx-auto">We are an organisation that unites unemployed professionals
+          <p class="text-xl my-4  text-center sm:w-3/4 w-10/12 mx-auto">We are an organisation that unites unemployed professionals
             and guide them towards both employement opportunities and entrepreneurial ventures.</p>
           <p class="text-xl my-4 text-center w-3/4 mx-auto">We are focused on empowering youths by providong training
             and guidance,financial support and facilitate access to side hustles</p>
         </div>
       </div>
-      <div class="w-7/12 flex justify-center items-center">
-        <img src="/images/garden.png" class="w-3/4" alt="">
-      </div>
+
     </div>
   </div>
   <!-- MISSION -->
   <div>
     <heading class="my-16" sub-heading="OUR MISSION" heading="Transforming Lives Through Opportunity"></heading>
     <div class="flex">
-      <div class="grid grid-cols-3 gap-x-20 mx-10 mb-10">
+      <div class="grid sm:grid-cols-3 grid-cols-1 sm:gap-x-20 gap-y-10 sm:mx-10 mx-4 mb-10">
         <div class="flex">
           <i class="pi pi-chart-line bg-stone-200 h-fit p-3 rounded-full" style="font-size: 2rem;"></i>
           <p class="px-2 text-stone-900"><span class="font-bold text-xl text-black">Transform lives:</span> Guide,
@@ -74,14 +75,14 @@ const coreValues = [
   <!-- VISION -->
   <div class="h-fit">
     <heading sub-heading="OUR VISION" heading="A Thriving Nation Led by Empowered Youth"></heading>
-    <div class="flex">
+    <div class="sm:flex">
       <div class="flex items-center">
-        <p class="text-center  mx-auto w-3/4 font-thin">We envision creating a thriving community of empowered and
+        <p class="text-center  mx-auto sm:w-3/4 sm:p-0 px-5 ">We envision creating a thriving community of empowered and
           financially independent Kenyan professionals and entrepreneurs.
           Our goal is to foster a Kenya where youth are successfully employed or are flourishing business owners,
           contributing to economic growth and stability.</p>
       </div>
-      <img src="/images/hero.png" class="w-5/12" alt="">
+      <img src="/images/hero.png" class="sm:w-5/12" alt="">
     </div>
   </div>
 
@@ -89,7 +90,7 @@ const coreValues = [
   <div>
     <heading sub-heading="OUR CORE VALUES" heading="THE PRINCIPLES THAT GUIDE US"
       desc="These values form the foundation of our approach to empowering youths"></heading>
-    <div class="grid grid-cols-3 gap-10 m-10 ">
+    <div class="grid sm:grid-cols-3 gap-10 m-10 ">
       <div v-for="{ icon, label, description } in coreValues" class="border-slate-500 border rounded-xl p-10">
         {{ values }}
         <p>

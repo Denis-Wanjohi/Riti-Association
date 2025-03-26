@@ -40,7 +40,7 @@ onMounted(() => {
 <template>
     <div>
         <heading heading="Dashboard"></heading>
-        <div class="grid grid-cols-2 min:h-[15vh] mb-5 ">
+        <div class="grid sm:grid-cols-2 gap-2 min:h-[15vh] mb-5 ">
             <admin-stat-card title="PROFESSIONS" @click="router.push('/dashboard/professions')" :stat="applicants_count"
                 icon="pi pi-users"></admin-stat-card>
             <admin-stat-card title="PROFILE" :stat="employers_count" icon="pi pi-user"></admin-stat-card>

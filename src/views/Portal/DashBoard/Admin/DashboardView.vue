@@ -74,12 +74,12 @@ const dashboardData = () => {
     <Toast></Toast>
     <div>
         <heading heading="DASHBOARD"></heading>
-        <div class="grid grid-cols-2 min:h-[15vh] mb-5 ">
+        <div class="grid sm:grid-cols-2 gap-5 min:h-[15vh] mb-5 ">
             <admin-stat-card title="applicants" :stat="applicants_count" icon="pi pi-id-card"></admin-stat-card>
             <admin-stat-card title="employers" :stat="employers_count" icon="pi pi-user"></admin-stat-card>
         </div>
-        <div class="w-3/4 mx-auto">
-            <Tabs value="0">
+        <div class="sm:w-3/4  mx-auto">
+            <Tabs value="0" scrollable="true">
                 <TabList>
                     <Tab value="0">A P P L I C A N T S</Tab>
                     <Tab value="1">E M P L O Y E R S</Tab>
@@ -99,10 +99,10 @@ const dashboardData = () => {
                 </TabList>
                 <TabPanels>
                     <TabPanel value="0">
-                        <applicants :applicants="applicants"></applicants>
+                        <applicants  :applicants="applicants"></applicants>
                     </TabPanel>
                     <TabPanel value="1">
-                        <DataTable v-model:filters="filters" :value="employers" paginator :rows="20" sortMode="multiple"
+                        <DataTable  v-model:filters="filters" :value="employers" paginator :rows="20" sortMode="multiple"
                             removableSort size="small" stripedRows :loading="loading" tableStyle="min-width: 50rem"
                             :globalFilterFields="['membershipID', 'fname', 'profession', 'gender', 'course', 'university', 'grade', 'year']">
                             <template #header>

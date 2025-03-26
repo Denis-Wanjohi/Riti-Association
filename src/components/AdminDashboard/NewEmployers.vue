@@ -90,7 +90,7 @@ const authorize = ()=>{
             </template>
         </Column>
     </DataTable>
-    <Dialog modal :visible="viewMore" :closable="false" class="w-1/2">
+    <Dialog modal :visible="viewMore" :closable="false" class="sm:w-1/2">
         <template #header>
             <div class="flex w-full">
                 <div class="cinzel w-11/12 text-center text-xl" style="font-weight: bold;">NEW EMPLOYER DETAILS</div>

@@ -65,8 +65,9 @@ onMounted(() => {
         .then(res => {
             res.data.applicants.forEach(element => {
                 applicants.value.push(element)
-                loading.value = false
             });
+            loading.value = false
+
         })
         .catch(err => {
             console.log(err)
@@ -152,7 +153,7 @@ const getApplicantDetails = () => {
                 <div class="w-[200px]" v-if="applicant == null">
                     <loading-button></loading-button>
                 </div>
-                <div v-else class="grid grid-cols-1 gap-3 h-screen p-10 cinzel_dashboard_h3">
+                <div v-else class="grid  grid-cols-1 gap-3 h-screen sm:p-10 cinzel_dashboard_h3">
                     <p class="text-center cinzel_dashboard text-3xl pb-5">APPLICANT INFORMATION</p>
                     <category-card h4="BASIC INFORMATION">
 
@@ -172,10 +173,10 @@ const getApplicantDetails = () => {
                     <category-card h4="PERSONAL DETAILS">
 
                         <div class="">
-                            <div class="p-5 grid grid-cols-2 gap-4">
+                            <div class="p-5 grid sm:grid-cols-2 gap-4">
                                 <p> <span class="font-bold pr-3">Nationality:</span> {{
                                     applicant.personal_details.nationality
-                                }}</p>
+                                    }}</p>
                                 <p> <span class="font-bold pr-3">Marital Status:</span>{{
                                     applicant.personal_details.status }}
                                 </p>
@@ -184,10 +185,10 @@ const getApplicantDetails = () => {
                                 </p>
                                 <p> <span class="font-bold pr-3">Interview Mode:</span>{{
                                     applicant.personal_details.interview
-                                }}</p>
+                                    }}</p>
                             </div>
                             <p class="text-center  cinzel_dashboard_h3 underline">Residential Address</p>
-                            <div class="p-5 grid grid-cols-2 gap-4">
+                            <div class="p-5 grid sm:grid-cols-2 gap-4">
                                 <p> <span class="font-bold pr-3">County:</span> {{ applicant.personal_details.county }}
                                 </p>
                                 <p> <span class="font-bold pr-3">Sub-county:</span>{{
@@ -195,17 +196,17 @@ const getApplicantDetails = () => {
                                 </p>
                                 <p> <span class="font-bold pr-3">Consistency:</span>{{
                                     applicant.personal_details.constituency
-                                }}</p>
+                                    }}</p>
                                 <p> <span class="font-bold pr-3">Ward:</span>{{ applicant.personal_details.ward }}</p>
                             </div>
                             <p class="text-center cinzel_dashboard_h3 underline">Next of Kin</p>
-                            <div class="p-5 grid grid-cols-2 gap-4">
+                            <div class="p-5 grid sm:grid-cols-2 gap-4">
                                 <p> <span class="font-bold pr-3">Name:</span> {{ applicant.personal_details.kinName }}
                                 </p>
                                 <p> <span class="font-bold pr-3">Email:</span>{{ applicant.personal_details.kinEmail }}
                                 </p>
                                 <p> <span class="font-bold pr-3">Phone No.:</span>{{ applicant.personal_details.kinPhone
-                                }}</p>
+                                    }}</p>
                                 <p> <span class="font-bold pr-3">Relationship:</span>{{
                                     applicant.personal_details.kinRelationship }}</p>
                             </div>
@@ -214,7 +215,7 @@ const getApplicantDetails = () => {
                     <category-card h4="EDUCATION ">
                         <div class="">
                             <p class="text-center cinzel_dashboard_h3 mt-5 underline">HIGHER EDUCATION</p>
-                            <div class="p-5 grid grid-cols-2 gap-4">
+                            <div class="p-5 grid sm:grid-cols-2 gap-4">
                                 <p> <span class="font-bold pr-3">Highest level:</span> {{
                                     applicant.education_details.highestLevel }}</p>
                                 <p> <span class="font-bold pr-3">University/Collage:</span>{{
@@ -228,14 +229,14 @@ const getApplicantDetails = () => {
                                 </p>
                             </div>
                             <p class="text-center cinzel_dashboard_h3 mt-5 underline">HIGH SCHOOL</p>
-                            <div class="p-5 grid grid-cols-2 gap-4">
+                            <div class="p-5 grid sm:grid-cols-2 gap-4">
                                 <p> <span class="font-bold pr-3">Name:</span> {{ applicant.education_details.highSchool
-                                }}</p>
+                                    }}</p>
                                 <p> <span class="font-bold pr-3">Year Completed:</span>{{
                                     applicant.education_details.highYear
-                                }}</p>
+                                    }}</p>
                                 <p> <span class="font-bold pr-3">Grade:</span>{{ applicant.education_details.highGrade
-                                }}</p>
+                                    }}</p>
                             </div>
                         </div>
                     </category-card>
@@ -245,7 +246,7 @@ const getApplicantDetails = () => {
                             <p class="text-center my-5"> <span class="font-bold pr-3">Years of Experience:</span> {{
                                 applicant.work_details.yearsOfExperience }} years</p>
                             <p class="text-center cinzel_dashboard_h3 mt-5 underline">Institutions/Companies</p>
-                            <div class="p-5 grid grid-cols-2 gap-4">
+                            <div class="p-5 grid sm:grid-cols-2 gap-4">
                                 <p> <span class="font-bold pr-3">Name:</span> {{ applicant.work_details.company }}</p>
                                 <p> <span class="font-bold pr-3">Job Title:</span>{{ applicant.work_details.jobTitle }}
                                 </p>
@@ -259,7 +260,7 @@ const getApplicantDetails = () => {
                             </div>
 
                             <p class="text-center cinzel_dashboard_h3 mt-5 underline">Referees</p>
-                            <div class="p-5 grid grid-cols-2 gap-4">
+                            <div class="p-5 grid sm:grid-cols-2 gap-4">
                                 <p> <span class="font-bold pr-3">First Name:</span> {{ applicant.work_details.fname }}
                                 </p>
                                 <p> <span class="font-bold pr-3">Last Name:</span>{{ applicant.work_details.lname }}</p>

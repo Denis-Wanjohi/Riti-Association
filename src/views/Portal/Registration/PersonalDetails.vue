@@ -98,9 +98,9 @@ const onSubmit = ()=>{
     <div class="min:h-screen">
         <heading heading="PERSONAL DETAILS"></heading>
         
-        <form @submit.prevent="onSubmit" class="w-3/4 mx-auto mb-[150px]">
+        <form @submit.prevent="onSubmit" class="sm:w-3/4  sm:p-0 px-5 mx-auto mb-[150px]">
             <div class="font-bold font-serif text-xl my-5">Personal Information</div>
-            <div class="card flex flex-col items-center gap-6 border my-10 py-5 rounded-xl">
+            <div class="card flex flex-col items-center gap-6 border px-3 border-slate-500 border-dashed my-10 py-5 rounded-xl">
                 <p class="text-slate-600">Below upload a passport sized image of yourself.*</p>
                 <FileUpload mode="basic" @select="onFileSelect" customUpload auto severity="warn"
                     class="p-button-outlined" />
@@ -108,61 +108,61 @@ const onSubmit = ()=>{
                     style="filter: grayscale(10%)" />
                 <Button v-if="src" severity="danger" @click="src = null" class="font-bold" outlined="">Remove</Button>
             </div>
-            <div class="grid grid-cols-2 gap-10">
+            <div class="grid sm:grid-cols-2 gap-10">
                 <FloatLabel variant="on">
-                    <InputText id="country" required class="w-3/4" v-model="user.nationality" type="text" />
+                    <InputText id="country" required class="sm:w-3/4 w-full" v-model="user.nationality" type="text" />
                     <label for="country">Nationality</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <Select :options="status" v-model="user.status" optionLabel="label" class="w-3/4" />
+                    <Select :options="status" v-model="user.status" optionLabel="label" class="sm:w-3/4 w-full" />
                     <label for="status">Marital status</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <Select :options="citizen" v-model="user.citizen" optionLabel="label" class="w-3/4" />
+                    <Select :options="citizen" v-model="user.citizen" optionLabel="label" class="sm:w-3/4 w-full" />
                     <label for="citizen">Dual Citizen</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <Select :options="interview" v-model="user.interview" optionLabel="label" class="w-3/4" />
+                    <Select :options="interview" v-model="user.interview" optionLabel="label" class="sm:w-3/4 w-full" />
                     <label for="interview">Mode of Interview</label>
                 </FloatLabel>
             </div>
 
             <div class="font-bold font-serif text-xl my-5">Residential Address</div>
-            <div class="grid grid-cols-2 gap-10 mb-10">
+            <div class="grid sm:grid-cols-2 gap-10 mb-10">
                 <FloatLabel variant="on">
-                    <InputText id="county"  required class="w-3/4" v-model="user.county" type="text" />
+                    <InputText id="county"  required class="sm:w-3/4 w-full" v-model="user.county" type="text" />
                     <label for="county">County</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <InputText id="subCounty" required class="w-3/4" v-model="user.subCounty" type="text" />
+                    <InputText id="subCounty" required class="sm:w-3/4 w-full" v-model="user.subCounty" type="text" />
                     <label for="subCounty">Sub-County</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <InputText id="constituency" required class="w-3/4" v-model="user.constituency" type="text" />
+                    <InputText id="constituency" required class="sm:w-3/4 w-full" v-model="user.constituency" type="text" />
                     <label for="constituency">Constituency</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <InputText id="ward" required class="w-3/4" v-model="user.ward" type="text" />
+                    <InputText id="ward" required class="sm:w-3/4 w-full" v-model="user.ward" type="text" />
                     <label for="ward">Ward</label>
                 </FloatLabel>
             </div>
 
             <div class="font-bold font-serif text-xl my-5">Next of Kin</div>
-            <div class="grid grid-cols-2 gap-10 mb-10">
+            <div class="grid sm:grid-cols-2 gap-10 mb-10">
                 <FloatLabel variant="on">
-                    <InputText id="kinName" required class="w-3/4" v-model="user.kinName" type="text" />
+                    <InputText id="kinName" required class="sm:w-3/4 w-full" v-model="user.kinName" type="text" />
                     <label for="kinName">Fullname</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <InputText id="kinPhone" required class="w-3/4" v-model="user.kinPhone" type="text" />
+                    <InputText id="kinPhone" required class="sm:w-3/4 w-full" v-model="user.kinPhone" type="text" />
                     <label for="kinPhone">Contact Number</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <InputText id="kinEmail"required  class="w-3/4" v-model="user.kinEmail" type="email" />
+                    <InputText id="kinEmail"required  class="sm:w-3/4 w-full" v-model="user.kinEmail" type="email" />
                     <label for="kinEmail">Email</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <InputText id="kinRelationship" required class="w-3/4" v-model="user.kinRelationship" type="text" />
+                    <InputText id="kinRelationship" required class="sm:w-3/4 w-full" v-model="user.kinRelationship" type="text" />
                     <label for="kinRelationship">Relationship</label>
                 </FloatLabel>
             </div>

@@ -37,8 +37,8 @@ const projects = [
             <p class="text-5xl my-4 cinzel">Our Projects</p>
             <p class="my-2 font-thin">We're dedicated to developing initiatives that foster growth, opportunity, and well-being</p>
         </div>
-        <div class="w-[95%] mx-auto">
-            <Timeline :value="projects" align="alternate" class=" ">
+        <div class="w-[95%] mx-auto sm:block hidden ">
+            <Timeline :value="projects" align="alternate" class="">
                 <template #opposite="slotProps">
                 <img :src="slotProps.item.image" class=" w-full my-10" alt="">
                 </template>
@@ -47,6 +47,25 @@ const projects = [
                         <div>
                             <h1 class="font-bold text-4xl text-center my-5">{{ slotProps.item.projectName }}</h1>
                             <p class="leading-loose my-5 w-3/4 mx-auto">
+                                {{ slotProps.item.description }}
+                                <!-- Through Gikomba Mtaani, we provide access to second-hand clothing and household goods, simultaneously offering our members valuable side-income during their job search. -->
+                            </p>
+                        </div>
+                    </div>
+                </template>
+            </Timeline>
+        </div>
+        <div class="w-[95%] mx-auto sm:hidden block overflow-auto">
+            <Timeline :value="projects" layout="horizontal"  class="" style="width: 100%;">
+                <!-- <template #opposite="slotProps"> -->
+                <!-- <img :src="slotProps.item.image" class=" w-full my-10" alt=""> -->
+                <!-- </template> -->
+                <template #content="slotProps">
+                    <div class="flex items-center text-center px-5  w-screen">
+                        <div class="w-full">
+                            <h1 class="font-bold sm:text-4xl text-2xl text-center my-5">{{ slotProps.item.projectName }}</h1>
+                            <img :src="slotProps.item.image" class=" w-full my-10" alt="">
+                            <p class="sm:leading-loose my-5 w-full mx-auto">
                                 {{ slotProps.item.description }}
                                 <!-- Through Gikomba Mtaani, we provide access to second-hand clothing and household goods, simultaneously offering our members valuable side-income during their job search. -->
                             </p>

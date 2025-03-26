@@ -49,65 +49,65 @@ const onSubmit = ()=>{
     <div>
         <Toast></Toast>
         <heading heading="WORK EXPERIENCE "></heading>
-        <form class="w-3/4 mx-auto mb-[150px]" @submit.prevent="onSubmit">
+        <form class="sm:w-3/4 sm:p-0 px-5 mx-auto mb-[150px]" @submit.prevent="onSubmit">
             <!-- <h1 class="text-2xl font-bold font-serif mt-10 mb-5">Higher Education</h1> -->
-            <div class="grid grid-cols-2 gap-y-10 my-10">
+            <div class="grid sm:grid-cols-2 gap-y-10 my-10">
                 <FloatLabel variant="on" >
-                    <InputText id="yearsOfExperience" required  class="w-3/4" v-model="user.yearsOfExperience" type="number" />
+                    <InputText id="yearsOfExperience" required  class="sm:w-3/4 w-full" v-model="user.yearsOfExperience" type="number" />
                     <label for="yearsOfExperience">Years of Experience</label>
                 </FloatLabel>
             </div>
-            <div class="grid grid-cols-2 gap-y-10 my-10">
+            <div class="grid sm:grid-cols-2 gap-y-10 my-10">
                 <FloatLabel variant="on" >
-                    <InputText id="company" required class="w-3/4" v-model="user.company" type="text" />
+                    <InputText id="company" required class="sm:w-3/4 w-full" v-model="user.company" type="text" />
                     <label for="company">First Company/Institution</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <InputText id="jobTitle" required class="w-3/4" v-model="user.jobTitle" type="text" />
+                    <InputText id="jobTitle" required class="sm:w-3/4 w-full" v-model="user.jobTitle" type="text" />
                     <label for="jobTitle">Job Title</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="w-3/4"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full"></DatePicker>
                     <label for="from">From</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="w-3/4"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full"></DatePicker>
                     <label for="to">To</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <InputText id="company2" required  class="w-3/4" v-model="user.company2" type="text" />
+                    <InputText id="company2" required  class="sm:w-3/4 w-full" v-model="user.company2" type="text" />
                     <label for="company2">Second Company/Institution</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <InputText id="jobTitle2" required class="w-3/4" v-model="user.jobTitle2" type="text" />
+                    <InputText id="jobTitle2" required class="sm:w-3/4 w-full" v-model="user.jobTitle2" type="text" />
                     <label for="jobTitle2">Job Title</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="w-3/4"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full"></DatePicker>
                     <label for="from">Started</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="w-3/4"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full"></DatePicker>
                     <label for="to">Ended</label>
                 </FloatLabel>
             </div>
 
             <h1 class="text-2xl font-bold font-serif mt-10 mb-5">Referees</h1>
-            <div class="grid grid-cols-2 gap-y-10 mb-10">
+            <div class="grid sm:grid-cols-2 gap-y-10 mb-10">
                 <FloatLabel variant="on" >
-                    <InputText id="fname" required  class="w-3/4" v-model="user.fname" type="text" />
+                    <InputText id="fname" required  class="sm:w-3/4 w-full" v-model="user.fname" type="text" />
                     <label for="fname">First Name</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <InputText id="lname"  required class="w-3/4" v-model="user.lname" type="text" />
+                    <InputText id="lname"  required class="sm:w-3/4 w-full" v-model="user.lname" type="text" />
                     <label for="lname">Last Name</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <InputText id="institution"  required class="w-3/4" v-model="user.institution" type="text" />
+                    <InputText id="institution"  required class="sm:w-3/4 w-full" v-model="user.institution" type="text" />
                     <label for="institution">Institution</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <InputText id="contact"  required class="w-3/4" v-model="user.refereeContact" type="text" />
+                    <InputText id="contact"  required class="sm:w-3/4 w-full" v-model="user.refereeContact" type="text" />
                     <label for="contact">Contact(email/phone number)</label>
                 </FloatLabel>
             </div>

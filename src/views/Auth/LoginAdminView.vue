@@ -40,9 +40,9 @@ const onSubmit = ()=>{
 </script>
 <template>
     <Toast></Toast>
-    <heading heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="A D M I N "></heading>
+    <heading class="px-2" heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="A D M I N "></heading>
 
-    <div class="w-1/4 mx-auto h-[50vh] flex items-center justify-center ">
+    <div class="sm:w-1/4 mx-auto h-[50vh] flex items-center justify-center ">
         <form @submit.prevent="onSubmit" class="grid grid-cols-1 gap-y-10 mt-10">
             <FloatLabel variant="on" >
                 <InputText id="staffNo" required  class="w-full" v-model="user.staffNo" type="text" />

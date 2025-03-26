@@ -40,9 +40,9 @@ const onSubmit = ()=>{
 <template>
     <Toast></Toast>
     <div class="h-screen">
-        <div class="w-3/4 mx-auto">
-            <heading heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="CHANGE PASSWORD"></heading>
-            <form @submit.prevent="onSubmit" class="grid grid-cols-1 gap-y-5 w-5/12 mx-auto mt-10" >
+        <div class="sm:w-3/4 mx-auto">
+            <heading class="px-5" heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="CHANGE PASSWORD"></heading>
+            <form @submit.prevent="onSubmit" class="grid grid-cols-1 gap-y-5 sm:w-5/12 sm:p-0 px-5 mx-auto mt-10" >
                
                 <div  class="grid grid-cols-1 gap-y-10">
                     <FloatLabel variant="on">

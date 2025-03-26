@@ -73,42 +73,39 @@ const register = ()=>{
 }
 </script>
 <template>
-    <div class="h-screen">
+    <div class="min:h-screen">
         <Toast></Toast>
-        <div class="w-3/4 mx-auto">
-            <heading heading=
-            "RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="Registration form"></heading>
-           <!-- {{ user.gender.label }} -->
-             <!-- <Button @click="register">hello</Button> -->
+        <div class="sm:w-3/4 mx-auto">
+            <heading class="px-5" heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="Registration form"></heading>
             <form @submit.prevent="register" class=" mt-10">
               
-                <div class="grid grid-cols-2 gap-y-10">
+                <div class="grid sm:grid-cols-2 gap-y-10  sm:p-0 px-4">
                     <FloatLabel variant="on" >
-                        <InputText id="fullNames" required class="w-3/4" v-model="user.fullname" type="text" />
+                        <InputText id="fullNames" required class="sm:w-3/4 w-full" v-model="user.fullname" type="text" />
                         <label for="fullNames">Full Names</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
-                        <InputText id="email" required class="w-3/4" v-model="user.email" type="email" />
+                        <InputText id="email" required class="sm:w-3/4 w-full"  v-model="user.email" type="email" />
                         <label for="email">Email</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
-                        <InputText id="phone"  required class="w-3/4" v-model="user.phone" />
+                        <InputText id="phone"  required class="sm:w-3/4 w-full"  v-model="user.phone" />
                         <label for="phone">Phone Number</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
-                        <InputText id="idNo" required class="w-3/4" v-model="user.idNumber" />
+                        <InputText id="idNo" required class="sm:w-3/4 w-full"  v-model="user.idNumber" />
                         <label for="idNo">Identification Number</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
-                        <Select :options="gender" required  v-model="user.gender" optionLabel="label" class="w-3/4" />
+                        <Select :options="gender" required  v-model="user.gender" optionLabel="label" class="sm:w-3/4 w-full"  />
                         <label for="on_label">Gender</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
-                        <DatePicker class="w-3/4" required v-model="user.dob" />
+                        <DatePicker class="sm:w-3/4 w-full"  required v-model="user.dob" />
                         <label for="on_label">Date of Birth</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
-                        <Select :options="interest" required v-model="user.interest" optionLabel="label" class="w-3/4" />
+                        <Select :options="interest" required v-model="user.interest" optionLabel="label" class="sm:w-3/4 w-full"  />
                         <label for="on_label">Area of Interest</label>
                     </FloatLabel>
                 </div>

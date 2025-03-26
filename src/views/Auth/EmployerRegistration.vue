@@ -39,9 +39,9 @@ const register = ()=>{
 
 <template>
     <Toast></Toast>
-    <div class="w-3/4 mx-auto">
-        <heading heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc=" Employer Registration form"></heading>
-        <form @submit.prevent="register" class=" mt-10 w-1/3 mx-auto">
+    <div class="sm:w-3/4 mx-auto">
+        <heading class="sm:p-0 px-3" heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc=" Employer Registration form"></heading>
+        <form @submit.prevent="register" class=" mt-10 sm:w-1/3 sm:p-0 px-5 mx-auto">
               <div class="grid grid-cols-1 gap-y-10">
                   <FloatLabel variant="on"  >
                       <InputText id="name" required class="w-full" v-model="user.name" type="text" />

@@ -157,7 +157,7 @@ function getRequestData(value) {
                 </template>
             </Column>
         </DataTable>
-        <Dialog modal :visible="isViewRequest" class="w-1/2" :closable="false">
+        <Dialog modal :visible="isViewRequest" class="sm:w-1/2" :closable="false">
             <template #header>
                 <div class="flex w-full">
                     <div class="cinzel w-11/12 text-center text-xl" style="font-weight: bold;">REQUEST DETAILS</div>
@@ -208,7 +208,7 @@ function getRequestData(value) {
 
                 <div class="flex justify-center">
                     <div v-if="!isConnecting"
-                        class="grid grid-cols-2 gap-x-3 justify-evenly px-5 w-full mx-auto  font-bold">
+                        class="grid grid-cols-2 gap-x-3 justify-evenly sm:px-5 w-full mx-auto  font-bold">
                         <Button @click="connect" class="label_holder my-10 w-full" severity="info">C O N N E C
                             T</Button>
                         <Button @click="decline" class="label_holder my-10 w-full" severity="danger">D E C L I N

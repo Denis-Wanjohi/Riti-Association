@@ -5,8 +5,8 @@ import { Divider } from 'primevue';
 import {scrollUp} from '@/utilities/util.js'
 </script>
 <template>
-    <div class="flex  w-11/12  mx-auto">
-        <div class="w-4/12">
+    <div class="sm:flex  sm:w-11/12  mx-auto">
+        <div class="sm:w-4/12">
             <div class="flex items-center justify-center">
                 <img src="/images/logo.png" class="rounded-full w-[100px] h-[100px]" alt="main logo">
                 <div class="w-1/2">
@@ -22,7 +22,7 @@ import {scrollUp} from '@/utilities/util.js'
                 <i class="pi pi-youtube cursor-pointer"></i>
             </div>
         </div>
-        <div class="flex w-8/12 justify-around">
+        <div class="flex sm:w-8/12 justify-around">
             <div  class="w-1/2  text-start  gabriela-regular">
                 <div class="mx-auto w-fit">
                     <p class="my-3 font-bold  cursor-pointer"><i class="pi pi-home mx-2"></i> Home</p>
@@ -35,8 +35,8 @@ import {scrollUp} from '@/utilities/util.js'
             </div>
             <div class="w-1/2 text-center">
                 <h1 class="font-bold text-2xl mb-5"> Contacts</h1>
-                <p class="gabriela-regular my-4"><i class="pi pi-phone"></i> +254 740 544 047</p>
-                <p class="gabriela-regular  my-4"> <i class="pi pi-map-marker"></i>Meru-Milimani, off Alba Street, Opposite Alba Hotel,
+                <p class="sm:gabriela-regular text-sm my-4"><i class="pi pi-phone"></i> +254 740 544 047</p>
+                <p class="sm:gabriela-regular text-sm  my-4"> <i class="pi pi-map-marker"></i>Meru-Milimani, off Alba Street, Opposite Alba Hotel,
                     Meru County</p>
             </div>
         </div>
