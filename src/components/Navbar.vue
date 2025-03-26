@@ -1,8 +1,9 @@
 <template>
+    <ConfirmPopup></ConfirmPopup>
     <div class="bg-gray-800 h-[70px] sm:px-10 flex  items-center justify-between">
         <div class=" w-fit h-full flex shrink-0 px-3 items-center  justify-center cursor-pointer"
             @click="router.push('/')">
-            <img src="/images/logo.jpg" class="sm:w-15 sm:h-12 w-10 h-10 object-fill rounded" alt="">
+            <img src="/images/logo.jpg" class="sm:w-15 sm:h-12 w-12 h-10 object-fill rounded" alt="">
             <p v-if="useUserStore().loggedIn" class="cinzel sm:text-4xl text-xl text-white text-center sm:mx-10">RITI
                 ASSOCIATION</p>
         </div>
@@ -21,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class=" sm:hidden">
+            <div class="sm:hidden pr-2">
                 <Button severity="info" @click="viewMenu = true"><i class="pi pi-bars"></i></Button>
 
             </div>
@@ -29,14 +30,15 @@
         </div>
 
         <div class="flex font-bold  sm:mx-10 sm:p-0 pr-2" v-else>
+            <loading-button v-if="isLoggingout" class="text-white"  style="color:white"></loading-button>
+
             <div v-if="!isLoggingout" class="sm:block hidden">
-                <Button @click="logout">L o g o u t</Button>
+                <Button  @click="confirm1($event)">L o g o u t</Button>
             </div>
             <div v-if="!isLoggingout" class="sm:hidden block">
-                <Button @click="logout"><i class="pi pi-sign-out"></i></Button>
+                <Button  @click="confirm1($event)"><i class="pi pi-sign-out"></i></Button>
             </div>
-
-            <loading-button v-else></loading-button>
+            
         </div>
 
 
@@ -75,12 +77,14 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import { Menubar, Button, Drawer, Divider } from 'primevue'
+import { Menubar, Button, Drawer, Divider,ConfirmPopup } from 'primevue'
 import router from "@/router";
 import LoadingButton from "./loadingButton.vue";
 import axiosClient from "@/axios/axios";
 import { useUserStore } from "@/stores/user";
 import IconPortal from "./icons/IconPortal.vue";
+import { useConfirm } from "primevue/useconfirm";
+const confirm = useConfirm();
 const viewMenu = ref(false)
 const items = ref([
     {
@@ -108,6 +112,7 @@ const isLoggingout = ref(false)
 const token = ref(false)
 function logout() {
     isLoggingout.value = true
+    
     let user;
     if (sessionStorage.getItem('admin')) {
         user = "admins"
@@ -139,11 +144,51 @@ onMounted(() => {
     }
 
 })
+const confirm1 = (event) => {
+    confirm.require({
+        target: event.currentTarget,
+        message: 'Are you sure you want to logout?',
+        icon: 'pi pi-exclamation-triangle',
+        rejectProps: {
+            label: 'No',
+            severity: 'secondary',
+            outlined: true
+        },
+        acceptProps: {
+            label: 'Yes'
+        },
+        accept: () => {
+            logout()
+            // toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+        },
+        reject: () => {
+            toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+        }
+    });
+};
 </script>
 
 
+
 <style>
-.p-menubar {
-    color: red;
+.p-toast {
+  width: 90% !important; /* Default width for small screens */
+  max-width: 400px; /* Ensures it doesn't get too large */
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 768px) {
+  .p-toast {
+    width: 50% !important;
+    max-width: 500px;
+  }
+}
+
+/* Large screens (desktops) */
+@media (min-width: 1024px) {
+  .p-toast {
+    width: 30% !important;
+    max-width: 600px;
+  }
 }
 </style>
