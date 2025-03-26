@@ -27,11 +27,6 @@ const onSubmit = ()=>{
         if(user.value.email == "info@ritiassociation.or.ke"){
             router.push('/login/admin')
             return;
-        }else{
-            toast.add({severity:'error',summary:'INAVLID CREDENTIALS',detail:'credentials provided doesn\'t match our records.',life:7000})
-            user.value.email = null
-            isSubmitting.value = false;
-            return;
         }
         let data = {
             email:user.value.email,
