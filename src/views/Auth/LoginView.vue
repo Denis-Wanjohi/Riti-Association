@@ -29,6 +29,8 @@ const onSubmit = ()=>{
             return;
         }else{
             toast.add({severity:'error',summary:'INAVLID CREDENTIALS',detail:'credentials provided doesn\'t match our records.',life:7000})
+            isSubmitting.value = false;
+            return;
         }
         let data = {
             email:user.value.email,
