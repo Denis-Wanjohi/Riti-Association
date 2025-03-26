@@ -96,6 +96,7 @@ const dashboardData = () => {
                         </OverlayBadge>
                         <p v-else>NEW EMPLOYERS</p>
                     </Tab>
+                    <Tab value="3"></Tab>
                 </TabList>
                 <TabPanels>
                     <TabPanel value="0">

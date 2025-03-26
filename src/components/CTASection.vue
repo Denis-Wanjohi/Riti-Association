@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class=" sn:m-10 m-5 rounded-xl text-center p-1 sm:flex bg-blue-500 h-[40vh]">
+        <div class=" sm:m-10 m-5 rounded-xl text-center p-1 sm:flex bg-blue-500 sm:h-[40vh] h-fit">
             <div class="flex items-center sm:w-3/4 justify-center">
                 <div>
                     <p class="sm:text-5xl text-3xl font-bold cinzel_cta">CONNECT, GROW AND SUCCCEED</p>
