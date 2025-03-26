@@ -23,7 +23,7 @@ const onSubmit = ()=>{
     isSubmitting.value = true
     if(step.value == 0){
 
-        if(user.value.email == "admin@gmail.com"){
+        if(user.value.email == "info@ritiassociation.or.ke"){
             router.push('/login/admin')
             return;
         }
