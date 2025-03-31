@@ -36,6 +36,7 @@ const onSubmit = ()=>{
     .then(res=>{
         isSubmiting.value = false
         if(res.data.message){
+            toast.add({severity:'success',summary:'REGISTRATION COMPLETE',detail:"Congratulations you are now a fully registered member!",life:8000})
             router.push('/portal/dashboard')
         }
     })
