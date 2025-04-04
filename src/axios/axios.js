@@ -4,7 +4,7 @@ import axios from "axios";
 import { list } from "postcss";
 
 const axiosClient = axios.create({
-    baseURL:'https://2646-102-215-12-244.ngrok-free.app/api'
+    baseURL:'https://dc8c-102-215-12-244.ngrok-free.app/api'
     // baseURL:'http://localhost:8000/api/'
 })
 axiosClient.interceptors.request.use(config =>{
