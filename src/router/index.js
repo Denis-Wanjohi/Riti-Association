@@ -131,17 +131,17 @@ const router = createRouter({
       name:'dashboard-employer',
       component:()=> import('../views/Portal/DashBoard/Employer/DashboardView.vue')
     },
-    // {
-    //   path:'/dashboard/professions',
-    //   name:'professions',
-    //   component:()=> import('../views/Portal/DashBoard/Employer/ApplicantsView.vue')
-    // },
+    {
+      path:'/dashboard/professions',
+      name:'professions',
+      component:()=> import('../views/Portal/DashBoard/Employer/ApplicantsView.vue')
+    },
     // temporary
-    // {
-    //   path:'/category',
-    //   name:'category',
-    //   component:()=>import('@/views/Portal/DashBoard/Employer/CategoryView.vue')
-    // },
+    {
+      path:'/category',
+      name:'category',
+      component:()=>import('@/views/Portal/DashBoard/Employer/CategoryView.vue')
+    },
     {
       path:'/dashboard/category/:category',
       name:'category-item',
