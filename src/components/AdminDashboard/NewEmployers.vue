@@ -1,5 +1,5 @@
 <script setup>
-import { DataTable,Column,Button,InputIcon,IconField,InputText,Dialog,Toast, useToast } from 'primevue';
+import { DataTable,Column,Button,InputIcon,IconField,InputText,Dialog,Toast, useToast,FloatLabel } from 'primevue';
 import { FilterMatchMode } from '@primevue/core/api';
 import { ref, watch } from 'vue';
 import LoadingButton from '../loadingButton.vue';
@@ -8,14 +8,13 @@ import axiosClient from '@/axios/axios';
 const {newEmployers} = defineProps({newEmployers:Array})
 const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    membershipID: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    fname: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-    course: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    profession: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    gender: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    university: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    year: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+    position: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    phone: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    email: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    company: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    companyEmail: { value: null, matchMode: FilterMatchMode.CONTAINS },
+
 });
 const toast = useToast()
 const viewMore = ref(false)
@@ -58,7 +57,7 @@ const authorize = ()=>{
 <template>
     <Toast></Toast>
     <DataTable v-model:filters="filters" :value="newEmployers"   paginator :rows="20" sortMode="multiple" removableSort  size="small" stripedRows :loading="loading"  tableStyle="min-width: 50rem"
-            :globalFilterFields="['membershipID', 'fname', 'profession', 'gender','course','university','grade','year']"
+            :globalFilterFields="['name', 'position', 'phone', 'email','company','companyEmail',]"
     >
         <template #header>
             <div class="flex justify-end">

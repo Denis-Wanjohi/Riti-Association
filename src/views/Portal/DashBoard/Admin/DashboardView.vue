@@ -9,6 +9,7 @@ import { Button, Toast, Tab, TabList, Tabs, TabPanel, TabPanels, DataTable, Colu
 import { onMounted, ref } from 'vue';
 import { useToast } from 'primevue';
 import axiosClient from '@/axios/axios';
+import router from '@/router';
 const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     membershipID: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -23,10 +24,12 @@ const filters = ref({
 
 const employers_count = ref(0)
 const applicants_count = ref(0)
+const admin_count = ref(0)
 const applicants = ref([])
 const employers = ref([])
 const newEmployers = ref([])
 const requests = ref([])
+const loading = ref(true);
 const applicantPhone = (phoneNumber) => {
     if (typeof phoneNumber !== 'string' || phoneNumber.length !== 10) {
         return "-- -- -- --";
@@ -63,9 +66,12 @@ const dashboardData = () => {
             })
             applicants_count.value = res.data.applicant_count
             employers_count.value = res.data.employer_count
+            admin_count.value = res.data.admin_count
+            loading.value = false
         })
         .catch(err => {
             toast.add({ severity: 'info', summary: 'DATA FETCH', detail: 'please reload the page', life: 3000 })
+            loading.value = false
         })
 }
 </script>
@@ -74,11 +80,44 @@ const dashboardData = () => {
     <Toast></Toast>
     <div>
         <heading heading="DASHBOARD"></heading>
-        <div class="grid sm:grid-cols-2 gap-5 min:h-[15vh] mb-5 ">
-            <admin-stat-card title="applicants" :stat="applicants_count" icon="pi pi-id-card"></admin-stat-card>
-            <admin-stat-card title="employers" :stat="employers_count" icon="pi pi-user"></admin-stat-card>
+        <div  class=" flex items-center  mx-auto w-screen h-[20vh]" v-if="loading">
+            <svg  class="mx-auto w-[90px]"  xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24">
+                <rect width="24" height="24" fill="none" />
+                <rect width="6" height="14" x="1" y="4" fill="#0103ef">
+                    <animate id="svgSpinnersBarsScaleFade0" fill="freeze" attributeName="y"
+                        begin="0;svgSpinnersBarsScaleFade1.end-0.225s" dur="0.675s" values="1;5" />
+                    <animate fill="freeze" attributeName="height" begin="0;svgSpinnersBarsScaleFade1.end-0.225s"
+                        dur="0.675s" values="22;14" />
+                    <animate fill="freeze" attributeName="opacity" begin="0;svgSpinnersBarsScaleFade1.end-0.225s"
+                        dur="0.675s" values="1;0.2" />
+                </rect>
+                <rect width="6" height="14" x="9" y="4" fill="#0103ef" opacity="0.4">
+                    <animate fill="freeze" attributeName="y" begin="svgSpinnersBarsScaleFade0.begin+0.135s" dur="0.675s"
+                        values="1;5" />
+                    <animate fill="freeze" attributeName="height" begin="svgSpinnersBarsScaleFade0.begin+0.135s"
+                        dur="0.675s" values="22;14" />
+                    <animate fill="freeze" attributeName="opacity" begin="svgSpinnersBarsScaleFade0.begin+0.135s"
+                        dur="0.675s" values="1;0.2" />
+                </rect>
+                <rect width="6" height="14" x="17" y="4" fill="#0103ef" opacity="0.3">
+                    <animate id="svgSpinnersBarsScaleFade1" fill="freeze" attributeName="y"
+                        begin="svgSpinnersBarsScaleFade0.begin+0.27s" dur="0.675s" values="1;5" />
+                    <animate fill="freeze" attributeName="height" begin="svgSpinnersBarsScaleFade0.begin+0.27s"
+                        dur="0.675s" values="22;14" />
+                    <animate fill="freeze" attributeName="opacity" begin="svgSpinnersBarsScaleFade0.begin+0.27s"
+                        dur="0.675s" values="1;0.2" />
+                </rect>
+            </svg>
         </div>
-        <div class="sm:w-3/4  mx-auto">
+        <div class="grid sm:grid-cols-3 gap-1 min:h-[15vh] mb-5" v-if="!loading">
+            <admin-stat-card title="applicants" :stat="applicants_count" @click="router.push('/dashboard/professions')"
+                icon="pi pi-id-card"></admin-stat-card>
+            <admin-stat-card title="employers" :stat="employers_count" @click="router.push('/dashboard/employers')"
+                icon="pi pi-user"></admin-stat-card>
+                <admin-stat-card title="admins" :stat="admin_count" @click="router.push('/dashboard/admins')"
+                icon="pi pi-crown"></admin-stat-card>
+        </div>
+        <div class="sm:w-3/4  mx-auto" v-if="!loading">
             <Tabs value="0" scrollable="true">
                 <TabList>
                     <Tab value="0">A P P L I C A N T S</Tab>
@@ -100,10 +139,10 @@ const dashboardData = () => {
                 </TabList>
                 <TabPanels>
                     <TabPanel value="0">
-                        <applicants  :applicants="applicants"></applicants>
+                        <applicants :applicants="applicants"></applicants>
                     </TabPanel>
                     <TabPanel value="1">
-                        <DataTable  v-model:filters="filters" :value="employers" paginator :rows="20" sortMode="multiple"
+                        <DataTable v-model:filters="filters" :value="employers" paginator :rows="20" sortMode="multiple"
                             removableSort size="small" stripedRows :loading="loading" tableStyle="min-width: 50rem"
                             :globalFilterFields="['membershipID', 'fname', 'profession', 'gender', 'course', 'university', 'grade', 'year']">
                             <template #header>

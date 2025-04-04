@@ -107,15 +107,35 @@ const router = createRouter({
       component:()=> import('../views/Portal/DashBoard/Admin/DashboardView.vue')
     },
     {
+      path:'/dashboard/professions',
+      name:'admin-professions',
+      component:()=>import('@/views/Portal/DashBoard/Admin/ApplicantsView.vue')
+    },
+    {
+      path:'/dashboard/employers',
+      name:'admin-employers',
+      component:()=>import('@/views/Portal/DashBoard/Admin/EmployersView.vue')
+    },
+    {
+      path:'/dashboard/profession/:category',
+      name:'admin-category',
+      component:()=>import('@/views/Portal/DashBoard/Admin/CategoryView.vue')
+    },
+    {
+      path:'/dashboard/admins',
+      name:'admin-admins',
+      component:()=>import('@/views/Portal/DashBoard/Admin/AdminsView.vue')
+    },
+    {
       path:'/dashboard/employer',
       name:'dashboard-employer',
       component:()=> import('../views/Portal/DashBoard/Employer/DashboardView.vue')
     },
-    {
-      path:'/dashboard/professions',
-      name:'professions',
-      component:()=> import('../views/Portal/DashBoard/Employer/ApplicantsView.vue')
-    },
+    // {
+    //   path:'/dashboard/professions',
+    //   name:'professions',
+    //   component:()=> import('../views/Portal/DashBoard/Employer/ApplicantsView.vue')
+    // },
     // temporary
     // {
     //   path:'/category',
@@ -140,6 +160,11 @@ const applicantPaths= [
 ]
 const adminPaths = [
   'dashboard-admin',
+  'dashboard-categories',
+  'admin-employers',
+  'admin-professions',
+  'admin-category',
+  'admin-admins'
 ]
 const employerPath = [
   'dashboard-employer',

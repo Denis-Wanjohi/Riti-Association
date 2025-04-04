@@ -130,6 +130,8 @@ onMounted(() => {
 
 </script>
 <template>
+    <p class="text-start cursor-pointer pl-10 pt-10" @click="router.push('/dashboard')"> <i class="pi pi-angle-left mx-4">Back</i></p>
+
     <heading heading="PROFESSIONS" class="my-10" desc="Applicants are categorized according to different professions.">
     </heading>
     <main class="grid grid-cols-3 gap-5  w-4/5 mx-auto  mb-10 pb-10">
@@ -140,7 +142,8 @@ onMounted(() => {
                 <Tag class="mx-2 text-xs">{{ count }}</Tag>
             </div>
             <p class="py-5">{{ desc }}</p>
-            <Button @click="router.push('/profession/' + formLink(title))" severity="info" class="h-fit"> See more <i
+            <!-- {{'/profession/' + formLink(title)  }} -->
+            <Button @click="router.push('/dashboard/profession/' + formLink(title))" severity="info" class="h-fit"> See more <i
                     class="pi pi-arrow-up-right"></i></Button>
         </div>
     </main>

@@ -31,7 +31,7 @@ const onSubmit = ()=>{
     .catch(err=>{
         console.log(err.status)
         if(err.status == 401){
-            toast.add({severity:'error',summary:'Authentication error',detail:'Credetials provided dont match our records.',life:5000})
+            toast.add({severity:'error',summary:'Authentication error',detail:'Credentials provided dont match our records.',life:5000})
         }
         console.error(err)
         isSubmitting.value = false
