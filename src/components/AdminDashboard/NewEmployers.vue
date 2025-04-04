@@ -21,7 +21,7 @@ const viewMore = ref(false)
 const employer = ref(null)
 const emit = defineEmits(['refresh']);
 const isAuthorizing = ref(false)
-const loading = ref(true)
+const loading = ref(false)
 watch(viewMore,()=>{
     if(viewMore.value == false){
         employer.value = null
