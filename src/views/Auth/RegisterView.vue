@@ -1,13 +1,14 @@
 <script setup>
-import { FloatLabel,InputText,Select,DatePicker,Button,Toast } from 'primevue';
+import { FloatLabel,InputText,Select,DatePicker,Button,Toast,InputMask } from 'primevue';
 import Heading from '@/components/Heading.vue';
 // import InputFieldReg from '@/components/InputFieldReg.vue';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import {useToast} from 'primevue/usetoast'
 import router from '@/router';
 import axiosClient from '@/axios/axios';
 import { scrollUp } from '@/utilities/util';
 const isSubmitting = ref(false)
+const ageInvalid = ref(false)
 const toast = useToast()
 const user = ref({
     fullname:null,
@@ -33,9 +34,20 @@ const interest = [
     {label:'Business  Loan'},
 ]
 const register = ()=>{
-    if(user.value.gender == null || user.value.interest == null || user.value.dob == null){
+    const emptyFields = Object.keys(user.value).filter(key => !user.value[key]);
+    if (emptyFields.length > 0) {
         isSubmitting.value = false;
-        toast.add({severity:"warn",summary:"INPUTS ERROR",detail:"Please fill all inputs",life:'5000'})
+        toast.add({severity: "warn", summary: "INPUTS ERROR", detail: "Please fill all inputs", life: '5000'});
+        return;
+    }
+    // if (!user.value.fullname || !user.value.email || !user.value.phone || !user.value.idNumber || !user.value.gender || !user.value.dob || !user.value.interest) {
+    //     isSubmitting.value = false;
+    //     toast.add({severity:"warn",summary:"INPUTS ERROR",detail:"Please fill all inputs",life:'5000'})
+    //     return;
+    // }
+    if((new Date().getFullYear() - new Date(user.value.dob).getFullYear()) < 18 ){
+        ageInvalid.value = true
+        toast.add({severity:'error',summary:'AGE LIMIT',detail:'Please you must be of older than 18 years old to continue!!',life:8000})
         return;
     }
     isSubmitting.value = true
@@ -45,7 +57,7 @@ const register = ()=>{
         phone:user.value.phone,
         idNumber:user.value.idNumber,
         gender:user.value.gender.label,
-        dob:user.value.fullname,
+        dob:user.value.dob,
         interest:user.value.interest.label,
     }
     axiosClient.post('/register',data)
@@ -71,10 +83,20 @@ const register = ()=>{
         }
     })
 }
+watch(()=>user.value.dob,()=>{
+    if((new Date().getFullYear() - new Date(user.value.dob).getFullYear()) < 18 ){
+        ageInvalid.value = true
+        toast.add({severity:'warn',summary:'AGE LIMIT',detail:'must be of 18+ years old',life:8000})
+    }else{
+        ageInvalid.value = false
+    }
+    
+},)
 </script>
 <template>
     <div class="min:h-screen">
         <Toast></Toast>
+        {{ user }}
         <div class="sm:w-3/4 mx-auto">
             <heading class="px-5" heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="Registration form"></heading>
             <form @submit.prevent="register" class=" mt-10">
@@ -89,11 +111,12 @@ const register = ()=>{
                         <label for="email">Email</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
-                        <InputText id="phone"  required class="sm:w-3/4 w-full"  v-model="user.phone" />
+                        <InputMask id="ssn" v-model="user.phone" mask="+2549-9999-9999" required class="sm:w-3/4 w-full"  />
+                        <!-- <InputText id="phone"    v-model="user.phone" /> -->
                         <label for="phone">Phone Number</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
-                        <InputText id="idNo" required class="sm:w-3/4 w-full"  v-model="user.idNumber" />
+                        <InputText id="idNo" required class="sm:w-3/4 w-full"  v-model="user.idNumber"/>
                         <label for="idNo">Identification Number</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
@@ -101,7 +124,8 @@ const register = ()=>{
                         <label for="on_label">Gender</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
-                        <DatePicker class="sm:w-3/4 w-full"  required v-model="user.dob" />
+                        <!-- {{  new Date().getFullYear() - new Date(user.dob).getFullYear() < 18  }} -->
+                        <DatePicker class="sm:w-3/4 w-full"  required v-model="user.dob" :invalid="ageInvalid" />
                         <label for="on_label">Date of Birth</label>
                     </FloatLabel>
                     <FloatLabel variant="on">

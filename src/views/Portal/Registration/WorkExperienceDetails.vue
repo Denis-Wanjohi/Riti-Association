@@ -14,8 +14,12 @@ const user = ref({
     yearsOfExperience:null,
     company:null,
     jobTitle:null,
+    start:null,
+    end:null,
     company2:null,
     jobTitle2:null,
+    start2:null,
+    end2:null,
     fname:null,
     lname:null,
     institution:null,
@@ -29,6 +33,20 @@ onMounted(()=>{
 const onSubmit = ()=>{
     if (Object.values(user.value).some(value => !value)) {
         toast.add({severity:'error',summary:'FORM ERRORS',detail:'Please make sure you fill the whole form ',life:5000})
+        return;
+    }
+    
+    if(
+        new Date(user.value.start).getTime()  > new Date().getTime()||
+        new Date(user.value.end).getTime()  > new Date().getTime()||
+        new Date(user.value.start2).getTime()  > new Date().getTime()||
+        new Date(user.value.end2).getTime()  > new Date().getTime()
+     ){
+        toast.add({severity:'warn',summary:'Dates Error',detail:'Dates used cannot be past today',life:5000})
+        return;
+    }
+    if(user.value.start  > user.value.end || user.value.start2 > user.value.end2){
+        toast.add({severity:'warn',summary:'Dates mismatch',detail:'End date cannot be before start date',life:5000})
         return;
     }
     isSubmiting.value = true
@@ -47,6 +65,7 @@ const onSubmit = ()=>{
 }
 </script>
 <template>
+    
     <div>
         <Toast></Toast>
         <heading heading="WORK EXPERIENCE "></heading>
@@ -56,6 +75,7 @@ const onSubmit = ()=>{
                 <FloatLabel variant="on" >
                     <InputText id="yearsOfExperience" required  class="sm:w-3/4 w-full" v-model="user.yearsOfExperience" type="number" />
                     <label for="yearsOfExperience">Years of Experience</label>
+                   
                 </FloatLabel>
             </div>
             <div class="grid sm:grid-cols-2 gap-y-10 my-10">
@@ -68,11 +88,11 @@ const onSubmit = ()=>{
                     <label for="jobTitle">Job Title</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="sm:w-3/4 w-full"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full" v-model="user.start"></DatePicker>
                     <label for="from">From</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="sm:w-3/4 w-full"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full" v-model="user.end"></DatePicker>
                     <label for="to">To</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
@@ -84,11 +104,11 @@ const onSubmit = ()=>{
                     <label for="jobTitle2">Job Title</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="sm:w-3/4 w-full"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full" v-model="user.start2"></DatePicker>
                     <label for="from">Started</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="sm:w-3/4 w-full"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full" v-model="user.end2"></DatePicker>
                     <label for="to">Ended</label>
                 </FloatLabel>
             </div>

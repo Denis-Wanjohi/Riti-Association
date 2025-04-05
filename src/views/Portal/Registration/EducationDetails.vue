@@ -49,8 +49,16 @@ const onSubmit = ()=>{
         toast.add({severity:'error',summary:'FORM ERRORS',detail:'Please make sure you fill the whole form ',life:5000})
         return;
     }
+    if(user.value.year.length > 4){
+        toast.add({severity:'warn',summary:'YEAR GRADUATED',detail:'Graduation year should be an year'})
+        return;
+    }
+    if(user.value.highYear.length > 4){
+        toast.add({severity:'warn',summary:'YEAR COMPLETED',detail:'Graduation year should be an year'})
+        return;
+    }
     isSubmiting.value = true
-    // user.value = user.value.category.value
+
   
     let data = {
         highestLevel:user.value.highestLevel,
@@ -63,7 +71,7 @@ const onSubmit = ()=>{
         highYear:user.value.highYear,
         highGrade:user.value.highGrade,
     }
-    axiosClient.post('/education-details',data)
+    axiosClient.post('/education-detail',data)
     .then(res=>{
         isSubmiting.value = false
         if(res.data.message == 'updated'){
@@ -106,8 +114,9 @@ const onSubmit = ()=>{
                     <label for="grade">Grade Attained</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <InputText id="year" required  class="sm:w-3/4 w-full" v-model="user.year" type="text" />
+                    <InputText id="year" required  class="sm:w-3/4 w-full" v-model="user.year" type='number' />
                     <label for="year">Year of Graduation</label>
+                    <p class="text-sm text-orange-600">{{ user.year && user.year.length > 4 ? 'must be an year' :'jj' }}</p>
                 </FloatLabel>
             </div>
 
@@ -118,9 +127,11 @@ const onSubmit = ()=>{
                     <label for="highSchool">Name of School</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <InputText id="highYear" required  class="sm:w-3/4 w-full" v-model="user.highYear" type="text" />
+                    <InputText id="highYear" required  class="sm:w-3/4 w-full" v-model="user.highYear" type='number' />
                     <label for="highYear">Year Completed</label>
+                    <p class="text-sm text-orange-600">{{ user.highYear && user.highYear.length > 4 ? 'must be an year' :'' }}</p>
                 </FloatLabel>
+                
                 <FloatLabel variant="on" >
                     <InputText id="highGrade"  required class="sm:w-3/4 w-full" v-model="user.highGrade" type="text" />
                     <label for="highGrade">Grade</label>

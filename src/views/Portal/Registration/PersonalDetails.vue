@@ -1,6 +1,6 @@
 <script setup>
 import Heading from '@/components/Heading.vue';
-import { FloatLabel, Select, InputText, Button,FileUpload,Toast } from 'primevue';
+import { FloatLabel, Select, InputText, Button,FileUpload,Toast,InputMask } from 'primevue';
 import { useToast } from 'primevue';
 import { ref, onMounted } from "vue";
 import LoadingButton from '@/components/loadingButton.vue';
@@ -57,8 +57,14 @@ function onFileSelect(event) {
 
 const onSubmit = ()=>{
     if (Object.values(user.value).some(value => value === null || value === "")) {
-        toast.add({severity:"error",summary:"FORM DATA",detail:"Please make sure all fields in the form are not empty",life:5000})
+        if(user.value.image == null){
+            toast.add({severity:"error",summary:"FORM DATA",detail:"Please make sure you upload your image",life:5000})
+            return
+        }else{
+            toast.add({severity:"error",summary:"FORM DATA",detail:"Please make sure all fields in the form are not empty",life:5000})
         return;
+        }
+        
     }
     isSubmitting.value = true;
     let data = {
@@ -94,6 +100,7 @@ const onSubmit = ()=>{
 
 </script>
 <template>
+    <!-- {{ user }} -->
     <Toast></Toast>
     <div class="min:h-screen">
         <heading heading="PERSONAL DETAILS"></heading>
@@ -106,11 +113,12 @@ const onSubmit = ()=>{
                     class="p-button-outlined" />
                 <img v-if="src" :src="src" alt="Image" class="shadow-md rounded-xl w-full h-1/2 sm:w-64"
                     style="filter: grayscale(10%)" />
-                <Button v-if="src" severity="danger" @click="src = null" class="font-bold" outlined="">Remove</Button>
+                <Button v-if="src" severity="danger" @click="src = null,user.image = null" class="font-bold" outlined="">Remove</Button>
             </div>
             <div class="grid sm:grid-cols-2 gap-10">
+                <!-- {{ typeof(user.nationality) }} -->
                 <FloatLabel variant="on">
-                    <InputText id="country" required class="sm:w-3/4 w-full" v-model="user.nationality" type="text" />
+                    <InputText id="country" required class="sm:w-3/4  w-full" v-model="user.nationality" type="text" />
                     <label for="country">Nationality</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
@@ -154,7 +162,8 @@ const onSubmit = ()=>{
                     <label for="kinName">Fullname</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <InputText id="kinPhone" required class="sm:w-3/4 w-full" v-model="user.kinPhone" type="text" />
+                    <!-- <InputText id="kinPhone" required class="sm:w-3/4 w-full" v-model="user.kinPhone" type='number' /> -->
+                    <InputMask id="ssn" v-model="user.kinPhone" mask="+2549 9999 9999" required class="sm:w-3/4 w-full"  />
                     <label for="kinPhone">Contact Number</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
