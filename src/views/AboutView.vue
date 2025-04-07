@@ -52,7 +52,7 @@ const coreValues = [
   <div>
     <heading class="my-16" sub-heading="OUR MISSION" heading="Transforming Lives Through Opportunity"></heading>
     <div class="flex">
-      <div class="grid sm:grid-cols-3 grid-cols-1 sm:gap-x-20 gap-y-10 sm:mx-10 mx-4 mb-10">
+      <div class="grid sm:grid-cols-3 md:grid-cols-2 grid-cols-1 sm:gap-x-20 gap-y-10 sm:mx-10 mx-4 mb-10">
         <div class="flex">
           <i class="pi pi-chart-line bg-stone-200 h-fit p-3 rounded-full" style="font-size: 2rem;"></i>
           <p class="px-2 text-stone-900"><span class="font-bold text-xl text-black">Transform lives:</span> Guide,
@@ -90,7 +90,7 @@ const coreValues = [
   <div>
     <heading sub-heading="OUR CORE VALUES" heading="THE PRINCIPLES THAT GUIDE US"
       desc="These values form the foundation of our approach to empowering youths"></heading>
-    <div class="grid sm:grid-cols-3 gap-10 m-10 ">
+    <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-10 m-10 ">
       <div v-for="{ icon, label, description } in coreValues" class="border-slate-500 border rounded-xl p-10">
         {{ values }}
         <p>

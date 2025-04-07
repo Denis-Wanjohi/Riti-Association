@@ -43,7 +43,7 @@ const services = [
         and support you need</p>
     </div>
     <div class="sm:block hidden">
-      <div class="grid sm:grid-cols-3 grid-cols-1 gap-10 m-10  ">
+      <div class="grid sm:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-10 m-10  ">
         <div v-for="{ service, description } in services" class="border-slate-500 cursor-pointer border rounded-xl p-10">
           <!-- {{ values }} -->
           <p>

@@ -14,7 +14,7 @@ const contacts = [
     },
     {
         label: 'EMAIL',
-        desc: '+254 740 544 047',
+        desc: 'info@ritiassociation.or.ke',
         icon: 'pi pi-envelope'
     },
     {
@@ -55,14 +55,14 @@ function onSubmit() {
     <div>
         <heading heading="OUR CONTACTS" desc="Here is how you can reach out to us"></heading>
 
-        <div class="flex justify-around mt-10 px-10">
-            <div v-for="contact in contacts" class="border rounded-xl w-full m-5 border-gray-400 text-center p-10">
+        <div class="lg:flex justify-around mt-10 md:px-5 lg:w-full m-auto">
+            <div v-for="contact in contacts" class=" rounded-xl w-full m-5 bg-slate-100 shadow border-gray-400 text-center p-10">
                 <p class="text-center"> <i :class="contact.icon" style="font-size: 60px;"></i></p>
                 <p class="text-xl font-bold mt-5 cinzel" style="font-weight: bold;">{{ contact.label }}</p>
-                <p class="text-xl font-bold mt-10">{{ contact.desc }}</p>
+                <p class="font-bold mt-5 text-md">{{ contact.desc }}</p>
             </div>
         </div>
-        <div class="mb-10">
+        <div class="mb-10 px-5">
             <heading heading="Have Any Question?"
                 desc="Please fill with correct information, we will reach out as soon as possible"></heading>
             <form @submit.prevent="onSubmit" class="sm:w-4/12 mx-auto">

@@ -6,7 +6,7 @@ import { useApplicantStore } from '@/stores/applicant';
 import { onMounted, ref } from 'vue';
 import router from '@/router';
 import axiosClient from '@/axios/axios';
-import { scrollUp } from '@/utilities/util';
+import { dmy, scrollUp } from '@/utilities/util';
 import LoadingButton from '@/components/loadingButton.vue'
 
 const applicantStore = useApplicantStore()
@@ -48,7 +48,7 @@ function registrationPage(){
     <div v-if="  user_data && user_data.step != 4"  class="flex justify-center items-center h-[70vh] ">
         <div class="sm:w-1/4  mx-auto text-center">
             <p class="text-2xl font-bold my-10">WELCOME</p>
-            <RouterLink :to=" user_data.step == 1 ? '/registration/personal-details' : user_data.step == 2 ?'/registration/education-details':'/registration/work-experience-details' ">
+            <RouterLink :to=" user_data.step == 1 ? '/registration/personal-details' : user_data.step == 2 ?'/registration/education-details': user_data.step == 3 ? '/registration/work-experience-details':'/' ">
                 <Button  severity="info"  class="font-bold text-3xl">Finish up your registration</Button>
             </RouterLink>
         </div>
@@ -63,7 +63,7 @@ function registrationPage(){
                     <p> <span class="font-bold pr-3">Name:</span> {{ user_data.fullname }}</p>
                     <p> <span class="font-bold pr-3">Email:</span>{{ user_data.email }}</p>
                     <p> <span class="font-bold pr-3">Phone No.:</span>{{ user_data.phone }}</p>
-                    <p> <span class="font-bold pr-3">D.O.B:</span>{{ user_data.dob }}</p>
+                    <p> <span class="font-bold pr-3">D.O.B:</span>{{ dmy(user_data.dob) }}</p>
                     <p> <span class="font-bold pr-3">Membership ID:</span>{{ user_data.membershipID }}</p>
                 </div>
             </div>
@@ -111,7 +111,7 @@ function registrationPage(){
                 </div>
             </div>
         </dash-card>
-        <dash-card h4="WORK experience INFORMATION">
+        <dash-card h4="WORK EXPERIENCE INFORMATION">
             <div class="">
                 
                 <p class="text-center my-5"> <span class="font-bold pr-3">Years of Experience:</span> {{ user_data.work_details.yearsOfExperience }} years</p>
@@ -119,12 +119,12 @@ function registrationPage(){
                 <div class="p-5 grid sm:grid-cols-2 gap-4">
                     <p> <span class="font-bold pr-3">Name:</span> {{ user_data.work_details.company }}</p>
                     <p> <span class="font-bold pr-3">Job Title:</span>{{ user_data.work_details.jobTitle }}</p>
-                    <p> <span class="font-bold pr-3">From:</span>09/08/23</p>
-                    <p> <span class="font-bold pr-3">From:</span>09/08/24</p>
+                    <p> <span class="font-bold pr-3">From:</span>{{ dmy(user_data.work_details.start) }}</p>
+                    <p> <span class="font-bold pr-3">From:</span>{{ dmy(user_data.work_details.end) }}</p>
                     <p> <span class="font-bold pr-3">Name:</span> {{ user_data.work_details.company2 }}</p>
                     <p> <span class="font-bold pr-3">Job Title:</span>{{ user_data.work_details.jobTitle2 }}</p>
-                    <p> <span class="font-bold pr-3">From:</span>09/08/24</p>
-                    <p> <span class="font-bold pr-3">From:</span>09/08/25</p>
+                    <p> <span class="font-bold pr-3">From:</span>{{ dmy(user_data.work_details.start2) }}</p>
+                    <p> <span class="font-bold pr-3">From:</span>{{ dmy(user_data.work_details.end2 )}}</p>
                 </div>
 
                 <p class="text-center cinzel_dashboard_h3 mt-5 underline">Referees</p>
@@ -136,6 +136,7 @@ function registrationPage(){
                 </div>
             </div>
         </dash-card>
+        
     </div>
 </div>
 </template>

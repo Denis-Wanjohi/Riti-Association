@@ -16,10 +16,14 @@ import {scrollUp} from '@/utilities/util.js'
             </div>
             <p class="mx-5 font-thin text-sm text-center">Transforming Kenyan youth's futures by introducing them to entrepreneurial ventures, creating opportunities beyond conventional careers and driving sustainable growth.</p>
             <div class="grid grid-cols-4 w-3/4 mx-auto my-5">
-                <i class="pi pi-facebook cursor-pointer"></i>
-                <i class="pi pi-twitter cursor-pointer"></i>
-                <i class="pi pi-instagram cursor-pointer"></i>
-                <i class="pi pi-youtube cursor-pointer"></i>
+                <a href="https://facebook.com/ritiassociation" class="w-fit mx-auto" target="_blank" rel="noopener noreferrer"><i class="pi pi-facebook cursor-pointer"></i></a>
+                <a href="https://twitter.com/ritiassociation" class="w-fit mx-auto" target="_blank" rel="noopener noreferrer"><i class="pi pi-twitter cursor-pointer"></i></a>
+                <a href="https://youtube.com/@ritiassociation" class="w-fit mx-auto" target="_blank" rel="noopener noreferrer"><i class="pi pi-youtube cursor-pointer"></i></a>
+                <a href="https://instagram.com/ritiassociation" class="w-fit mx-auto" target="_blank" rel="noopener noreferrer"><i class="pi pi-instagram cursor-pointer"></i></a>
+                
+                
+                
+                
             </div>
         </div>
         <div class="flex sm:w-8/12 justify-around">
@@ -36,6 +40,7 @@ import {scrollUp} from '@/utilities/util.js'
             <div class="w-1/2 text-center">
                 <h1 class="font-bold text-2xl mb-5"> Contacts</h1>
                 <p class="sm:gabriela-regular text-sm my-4"><i class="pi pi-phone"></i> +254 740 544 047</p>
+                <p class="sm:gabriela-regular text-sm my-4"><i class="pi pi-envelope"></i> info@ritiassociation.or.ke</p>
                 <p class="sm:gabriela-regular text-sm  my-4"> <i class="pi pi-map-marker"></i>Meru-Milimani, off Alba Street, Opposite Alba Hotel,
                     Meru County</p>
             </div>

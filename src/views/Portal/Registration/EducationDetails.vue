@@ -71,7 +71,7 @@ const onSubmit = ()=>{
         highYear:user.value.highYear,
         highGrade:user.value.highGrade,
     }
-    axiosClient.post('/education-detail',data)
+    axiosClient.post('/education-details',data)
     .then(res=>{
         isSubmiting.value = false
         if(res.data.message == 'updated'){
@@ -114,9 +114,9 @@ const onSubmit = ()=>{
                     <label for="grade">Grade Attained</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <InputText id="year" required  class="sm:w-3/4 w-full" v-model="user.year" type='number' />
+                    <InputText id="year" required  class="sm:w-3/4 w-full" v-model="user.year" type='number' :invalid="user.year && user.year.length != 4" />
                     <label for="year">Year of Graduation</label>
-                    <p class="text-sm text-orange-600">{{ user.year && user.year.length > 4 ? 'must be an year' :'jj' }}</p>
+                    <p class="text-sm text-orange-600">{{ user.year && user.year.length != 4 ? 'must be an year' :'' }}</p>
                 </FloatLabel>
             </div>
 
@@ -127,9 +127,9 @@ const onSubmit = ()=>{
                     <label for="highSchool">Name of School</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <InputText id="highYear" required  class="sm:w-3/4 w-full" v-model="user.highYear" type='number' />
+                    <InputText id="highYear" required  class="sm:w-3/4 w-full" v-model="user.highYear" type='number'  :invalid="user.highYear && user.highYear.length != 4"/>
                     <label for="highYear">Year Completed</label>
-                    <p class="text-sm text-orange-600">{{ user.highYear && user.highYear.length > 4 ? 'must be an year' :'' }}</p>
+                    <p class="text-sm text-orange-600">{{ user.highYear && user.highYear.length != 4 ? 'must be an year' :'' }}</p>
                 </FloatLabel>
                 
                 <FloatLabel variant="on" >

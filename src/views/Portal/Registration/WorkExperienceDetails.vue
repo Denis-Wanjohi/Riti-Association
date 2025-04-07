@@ -88,12 +88,14 @@ const onSubmit = ()=>{
                     <label for="jobTitle">Job Title</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="sm:w-3/4 w-full" v-model="user.start"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full" v-model="user.start" :invalid="(new Date().getTime() - new Date(user.start).getTime()) < 0"></DatePicker>
                     <label for="from">From</label>
+                    <p class="text-sm text-red-600">{{ (new Date().getTime() - new Date(user.start).getTime()) < 0 ? 'date cannot be past today' :''  }}</p>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="sm:w-3/4 w-full" v-model="user.end"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full" v-model="user.end" :invalid="(new Date().getTime() - new Date(user.end).getTime()) < 0"></DatePicker>
                     <label for="to">To</label>
+                    <p class="text-sm text-red-600">{{ (new Date().getTime() - new Date(user.end).getTime()) < 0 ? 'date cannot be past today' :''  }}</p>
                 </FloatLabel>
                 <FloatLabel variant="on" >
                     <InputText id="company2" required  class="sm:w-3/4 w-full" v-model="user.company2" type="text" />
@@ -104,12 +106,14 @@ const onSubmit = ()=>{
                     <label for="jobTitle2">Job Title</label>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="sm:w-3/4 w-full" v-model="user.start2"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full" v-model="user.start2" :invalid="(new Date().getTime() - new Date(user.start2).getTime()) < 0"></DatePicker>
                     <label for="from">Started</label>
+                    <p class="text-sm text-red-600">{{ (new Date().getTime() - new Date(user.start2).getTime()) < 0 ? 'date cannot be past today' :''  }}</p>
                 </FloatLabel>
                 <FloatLabel variant="on" >
-                    <DatePicker class="sm:w-3/4 w-full" v-model="user.end2"></DatePicker>
+                    <DatePicker class="sm:w-3/4 w-full" v-model="user.end2" :invalid="(new Date().getTime() - new Date(user.end2).getTime()) < 0"></DatePicker>
                     <label for="to">Ended</label>
+                    <p class="text-sm text-red-600">{{ (new Date().getTime() - new Date(user.end2).getTime()) < 0 ? 'date cannot be past today' :''  }}</p>
                 </FloatLabel>
             </div>
 
