@@ -97,8 +97,8 @@ const router = createRouter({
       // component:()=> import('../views/Portal/Dashboard/Employer/ApplicantsView.vue')
     },
     {
-      path:'/applicants',
-      name:'applicants',
+      path:'/professions',
+      name:'professions',
       component: ()=> import('@/views/ApplicantsView.vue')
     },
     {
@@ -133,7 +133,7 @@ const router = createRouter({
     },
     {
       path:'/dashboard/professions',
-      name:'professions',
+      name:'employer-professions',
       component:()=> import('../views/Portal/DashBoard/Employer/ApplicantsView.vue')
     },
     // temporary
@@ -168,7 +168,7 @@ const adminPaths = [
 ]
 const employerPath = [
   'dashboard-employer',
-  'professions',
+  'employer-professions',
   'category-item',
 ]
 const publicPaths = [
@@ -182,7 +182,7 @@ const publicPaths = [
   'confirmation',
   'verify',
   'admin-login',
-  'applicants',
+  'professions',
   'projects',
   'contacts',
   //check well

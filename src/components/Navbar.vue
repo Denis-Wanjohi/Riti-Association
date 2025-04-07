@@ -7,14 +7,14 @@
             <p v-if="useUserStore().loggedIn" class="cinzel sm:text-4xl text-xl text-white text-center sm:mx-10">RITI
                 ASSOCIATION</p>
         </div>
-        <div v-if="!useUserStore().loggedIn" class="sm:w-1/2 sm:mx-auto ">
+        <div v-if="!useUserStore().loggedIn" class="sm:w-1/2  sm:mx-auto ">
             <div class="sm:block hidden w-full mx-auto">
                 <div class="card  text-white  flex ">
                     <!-- <Menubar :model="items" style="background: local;color: white;border: 0;"> -->
                     <div v-for="item in items" class="mx-auto font-serif">
                         <!-- <template #item="{ item }"> -->
                         <p @click="router.push(`${item.link}`)"
-                            class="px-5 cursor-pointer  hover:bg-gray-600 py-1 rounded-sm  font-bold text-xl text-white">
+                            class="px-5 cursor-pointer text-nowrap  hover:bg-gray-600 py-1 rounded-sm  font-bold text-xl text-white">
                             {{
                                 item.label }}</p>
                         <!-- </template> -->
@@ -96,6 +96,10 @@ const items = ref([
         label: 'About Us',
         icon: 'pi pi-star',
         link: '/about-us'
+    },
+    {
+        label:'Professions',
+        link:'/professions'
     },
     {
         label: 'Projects',

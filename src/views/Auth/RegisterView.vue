@@ -63,7 +63,7 @@ const register = ()=>{
     axiosClient.post('/register',data)
     .then(res=>{
         isSubmitting.value = false
-        console.log(res.data)
+    
         user.value.fullname = null
         user.value.email = null
         user.value.dob = null
@@ -96,7 +96,7 @@ watch(()=>user.value.dob,()=>{
 <template>
     <div class="min:h-screen">
         <Toast></Toast>
-        {{ user }}
+      
         <div class="sm:w-3/4 mx-auto">
             <heading class="px-5" heading="RITI ASSOCIATION OF UNEMPLOYED PROFESSIONALS" desc="Registration form"></heading>
             <form @submit.prevent="register" class=" mt-10">

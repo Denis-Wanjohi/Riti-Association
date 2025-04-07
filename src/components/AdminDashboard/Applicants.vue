@@ -2,6 +2,7 @@
 import { IconField, DataTable, InputIcon, InputText, Column, Dialog,Button } from 'primevue';
 import { FilterMatchMode } from '@primevue/core/api';
 import { ref, watch } from 'vue';
+import LoadingButton from '../loadingButton.vue';
 import axiosClient from '@/axios/axios'
 const { applicants } = defineProps({ applicants: Array })
 const filters = ref({
