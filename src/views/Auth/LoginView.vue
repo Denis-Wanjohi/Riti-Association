@@ -37,7 +37,7 @@ const onSubmit = () => {
         axiosClient.post('/login', data)
             .then(res => {
                 if (res.data.exists == true) {
-                    step.value = 1
+                    step.value = res.data.step == 0 ? 1 : res.data.step
                     verifiedEmail.value = true
                     isSubmitting.value = false
                     if (route.query.w != null) {
@@ -56,7 +56,7 @@ const onSubmit = () => {
             .catch(err => {
                 console.error(err)
             })
-    } else if (step.value == 1) {
+    } else if (step.value != 0) {
         let data = {
             membershipID: user.value.membershipID,
             password: user.value.password,

@@ -4,21 +4,17 @@
         <div class=" w-fit h-full flex shrink-0 px-3 items-center  justify-center cursor-pointer"
             @click="router.push('/')">
             <img src="/images/logo.jpg" class="sm:w-15 sm:h-12 w-12 h-10 object-fill rounded" alt="">
+
             <p v-if="useUserStore().loggedIn" class="cinzel sm:text-4xl text-xl text-white text-center sm:mx-10">RITI
                 ASSOCIATION</p>
         </div>
         <div v-if="!useUserStore().loggedIn" class="sm:w-1/2  sm:mx-auto ">
             <div class="sm:block hidden w-full mx-auto">
                 <div class="card  text-white  flex ">
-                    <!-- <Menubar :model="items" style="background: local;color: white;border: 0;"> -->
                     <div v-for="item in items" class="mx-auto font-serif">
-                        <!-- <template #item="{ item }"> -->
                         <p @click="router.push(`${item.link}`)"
                             class="px-5 cursor-pointer text-nowrap  hover:bg-gray-600 py-1 rounded-sm  font-bold text-xl text-white">
-                            {{
-                                item.label }}</p>
-                        <!-- </template> -->
-                        <!-- </Menubar> -->
+                            {{ item.label }}</p>
                     </div>
                 </div>
             </div>
@@ -30,15 +26,16 @@
         </div>
 
         <div class="flex font-bold  sm:mx-10 sm:p-0 pr-2" v-else>
-            <loading-button v-if="isLoggingout" class="text-white"  style="color:white"></loading-button>
+            <loading-button v-if="isLoggingout" class="text-white" style="color:white"></loading-button>
 
             <div v-if="!isLoggingout" class="sm:block hidden">
-                <Button  @click="confirm1($event)">L o g o u t</Button>
+                <Button @click="confirm1($event)">L o g o u t <i class="pi pi-spin pi-spinner-dotted"></i> {{
+                    isLoggingout }} </Button>
             </div>
             <div v-if="!isLoggingout" class="sm:hidden block">
-                <Button  @click="confirm1($event)"><i class="pi pi-sign-out"></i></Button>
+                <Button @click="confirm1($event)"><i class="pi pi-sign-out"></i></Button>
             </div>
-            
+
         </div>
 
 
@@ -77,7 +74,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import { Menubar, Button, Drawer, Divider,ConfirmPopup } from 'primevue'
+import { Button, Drawer, Divider, ConfirmPopup } from 'primevue'
 import router from "@/router";
 import LoadingButton from "./loadingButton.vue";
 import axiosClient from "@/axios/axios";
@@ -98,8 +95,8 @@ const items = ref([
         link: '/about-us'
     },
     {
-        label:'Professions',
-        link:'/professions'
+        label: 'Professions',
+        link: '/professions'
     },
     {
         label: 'Projects',
@@ -112,11 +109,12 @@ const items = ref([
         link: '/contacts'
     }
 ]);
+const isExit = ref(false)
 const isLoggingout = ref(false)
 const token = ref(false)
 function logout() {
     isLoggingout.value = true
-    
+
     let user;
     if (sessionStorage.getItem('admin')) {
         user = "admins"
@@ -125,7 +123,6 @@ function logout() {
     } else if (sessionStorage.getItem('applicant')) {
         user = "applicants"
     }
-    isLoggingout.value = true
 
     axiosClient.post('/logout', { user: user })
         .then(res => {
@@ -134,11 +131,13 @@ function logout() {
             isLoggingout.value = false
             useUserStore().setLoggedIn(false)
             router.push('/')
+            isLoggingout.value = false
         })
         .catch(err => {
-
+            console.error(err)
+            isLoggingout.value = false
         })
-    isLoggingout.value = false
+
 }
 onMounted(() => {
     if (sessionStorage.getItem('token')) {
@@ -162,6 +161,8 @@ const confirm1 = (event) => {
             label: 'Yes'
         },
         accept: () => {
+            alert('logging out')
+            isLoggingout.value = true
             logout()
             // toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
         },
@@ -170,29 +171,32 @@ const confirm1 = (event) => {
         }
     });
 };
+
 </script>
 
 
 
 <style>
 .p-toast {
-  width: 90% !important; /* Default width for small screens */
-  max-width: 400px; /* Ensures it doesn't get too large */
+    width: 90% !important;
+    /* Default width for small screens */
+    max-width: 400px;
+    /* Ensures it doesn't get too large */
 }
 
 /* Medium screens (tablets) */
 @media (min-width: 768px) {
-  .p-toast {
-    width: 50% !important;
-    max-width: 500px;
-  }
+    .p-toast {
+        width: 50% !important;
+        max-width: 500px;
+    }
 }
 
 /* Large screens (desktops) */
 @media (min-width: 1024px) {
-  .p-toast {
-    width: 30% !important;
-    max-width: 600px;
-  }
+    .p-toast {
+        width: 30% !important;
+        max-width: 600px;
+    }
 }
 </style>

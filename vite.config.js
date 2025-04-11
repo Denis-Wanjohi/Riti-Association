@@ -6,9 +6,6 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // css:{
-  //   postcss:'/postcss.config.cjs'
-  // },
   plugins: [
     vue(),
     vueDevTools(),

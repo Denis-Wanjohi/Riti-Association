@@ -57,9 +57,7 @@ const projects = [
         </div>
         <div class="w-[95%] mx-auto sm:hidden block overflow-auto">
             <Timeline :value="projects" layout="horizontal"  class="" style="width: 100%;">
-                <!-- <template #opposite="slotProps"> -->
-                <!-- <img :src="slotProps.item.image" class=" w-full my-10" alt=""> -->
-                <!-- </template> -->
+                
                 <template #content="slotProps">
                     <div class="flex items-center text-center px-5  w-screen">
                         <div class="w-full">
@@ -67,7 +65,6 @@ const projects = [
                             <img :src="slotProps.item.image" class=" w-full my-10" alt="">
                             <p class="sm:leading-loose my-5 w-full mx-auto">
                                 {{ slotProps.item.description }}
-                                <!-- Through Gikomba Mtaani, we provide access to second-hand clothing and household goods, simultaneously offering our members valuable side-income during their job search. -->
                             </p>
                         </div>
                     </div>

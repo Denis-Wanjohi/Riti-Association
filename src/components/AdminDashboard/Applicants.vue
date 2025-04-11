@@ -1,5 +1,5 @@
 <script setup>
-import { IconField, DataTable, InputIcon, InputText, Column, Dialog,Button } from 'primevue';
+import { IconField, DataTable, InputIcon, InputText, Column, Dialog, Button } from 'primevue';
 import { FilterMatchMode } from '@primevue/core/api';
 import { ref, watch } from 'vue';
 import LoadingButton from '../loadingButton.vue';
@@ -74,7 +74,8 @@ const getApplicant = () => {
         </Column>
         <Column header="Action">
             <template #body="slotProps">
-                <Button severity="info" @click="isViewApplicant = true, applicantID = slotProps.data.membershipID"><i class="pi pi-eye"></i> </Button>
+                <Button severity="info" @click="isViewApplicant = true, applicantID = slotProps.data.membershipID"><i
+                        class="pi pi-eye"></i> </Button>
             </template>
         </Column>
     </DataTable>
@@ -110,7 +111,7 @@ const getApplicant = () => {
                         <div class="p-5 grid sm:grid-cols-2 gap-4">
                             <p> <span class="font-bold pr-3">Nationality:</span> {{
                                 applicant.personal_details.nationality
-                            }}</p>
+                                }}</p>
                             <p> <span class="font-bold pr-3">Marital Status:</span>{{
                                 applicant.personal_details.status }}
                             </p>
@@ -119,7 +120,7 @@ const getApplicant = () => {
                             </p>
                             <p> <span class="font-bold pr-3">Interview Mode:</span>{{
                                 applicant.personal_details.interview
-                            }}</p>
+                                }}</p>
                         </div>
                         <p class="text-center  cinzel_dashboard_h3 underline">Residential Address</p>
                         <div class="p-5 grid sm:grid-cols-2 gap-4">
@@ -130,7 +131,7 @@ const getApplicant = () => {
                             </p>
                             <p> <span class="font-bold pr-3">Consistency:</span>{{
                                 applicant.personal_details.constituency
-                            }}</p>
+                                }}</p>
                             <p> <span class="font-bold pr-3">Ward:</span>{{ applicant.personal_details.ward }}</p>
                         </div>
                         <p class="text-center cinzel_dashboard_h3 underline">Next of Kin</p>
@@ -140,7 +141,7 @@ const getApplicant = () => {
                             <p> <span class="font-bold pr-3">Email:</span>{{ applicant.personal_details.kinEmail }}
                             </p>
                             <p> <span class="font-bold pr-3">Phone No.:</span>{{ applicant.personal_details.kinPhone
-                            }}</p>
+                                }}</p>
                             <p> <span class="font-bold pr-3">Relationship:</span>{{
                                 applicant.personal_details.kinRelationship }}</p>
                         </div>
@@ -165,12 +166,12 @@ const getApplicant = () => {
                         <p class="text-center cinzel_dashboard_h3 mt-5 underline">HIGH SCHOOL</p>
                         <div class="p-5 grid sm:grid-cols-2 gap-4">
                             <p> <span class="font-bold pr-3">Name:</span> {{ applicant.education_details.highSchool
-                            }}</p>
+                                }}</p>
                             <p> <span class="font-bold pr-3">Year Completed:</span>{{
                                 applicant.education_details.highYear
-                            }}</p>
+                                }}</p>
                             <p> <span class="font-bold pr-3">Grade:</span>{{ applicant.education_details.highGrade
-                            }}</p>
+                                }}</p>
                         </div>
                     </div>
                 </category-card>

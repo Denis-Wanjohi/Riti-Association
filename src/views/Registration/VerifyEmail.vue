@@ -18,9 +18,11 @@ onMounted(() => {
                     <div class="my-5 text-slate-800 text-center">We have sent an email to:</div>
                     <div class="font-bold text-xl my-5 sm:px-10 text-center ">{{ email }}</div>
                     <div class="text-slate-800 text-sm text-center mb-10  leading-loose">Please follow the instructions
-                        in the email to complete your registration. <br> If you didn’t receive the email, click the
-                        button below.</div>
-                    <Button severity="info" class="w-full">Resend verification email.</Button>
+                        in the email to complete your registration.
+                         <!-- <br> If you didn’t receive the email, click the -->
+                        <!-- button below. -->
+                    </div>
+                    <!-- <Button severity="info" class="w-full">Resend verification email.</Button> -->
                 </div>
             </div>
             <!-- <div class="sm:block hidden"> -->
