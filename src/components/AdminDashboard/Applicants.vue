@@ -4,6 +4,7 @@ import { FilterMatchMode } from '@primevue/core/api';
 import { ref, watch } from 'vue';
 import LoadingButton from '../loadingButton.vue';
 import axiosClient from '@/axios/axios'
+import { dmy } from '@/utilities/util';
 const { applicants } = defineProps({ applicants: Array })
 const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -100,7 +101,7 @@ const getApplicant = () => {
                             <!-- <p> <span class="font-bold pr-3">Email:</span>{{ applicant.email }}</p> -->
                             <p> <span class="font-bold pr-3">Phone No.:</span>{{ applicant.phone }}
                             </p>
-                            <p> <span class="font-bold pr-3">D.O.B:</span>{{ applicant.dob }}</p>
+                            <p> <span class="font-bold pr-3">D.O.B:</span>{{ dmy(applicant.dob) }}</p>
                             <p> <span class="font-bold pr-3">Membership ID:</span>{{ applicant.membershipID }}</p>
                         </div>
                     </div>
@@ -185,13 +186,13 @@ const getApplicant = () => {
                             <p> <span class="font-bold pr-3">Name:</span> {{ applicant.work_details.company }}</p>
                             <p> <span class="font-bold pr-3">Job Title:</span>{{ applicant.work_details.jobTitle }}
                             </p>
-                            <p> <span class="font-bold pr-3">From:</span>09/08/23</p>
-                            <p> <span class="font-bold pr-3">From:</span>09/08/24</p>
+                            <p> <span class="font-bold pr-3">From:</span>{{dmy(applicant.work_details.start)}}</p>
+                            <p> <span class="font-bold pr-3">From:</span>{{dmy(applicant.work_details.end)}}</p>
                             <p> <span class="font-bold pr-3">Name:</span> {{ applicant.work_details.company2 }}</p>
                             <p> <span class="font-bold pr-3">Job Title:</span>{{ applicant.work_details.jobTitle2 }}
                             </p>
-                            <p> <span class="font-bold pr-3">From:</span>09/08/24</p>
-                            <p> <span class="font-bold pr-3">From:</span>09/08/25</p>
+                            <p> <span class="font-bold pr-3">From:</span>{{dmy(applicant.work_details.start2)}}</p>
+                            <p> <span class="font-bold pr-3">From:</span>{{dmy(applicant.work_details.end2)}}</p>
                         </div>
 
                         <p class="text-center cinzel_dashboard_h3 mt-5 underline">Referees</p>

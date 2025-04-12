@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { useApplicantStore } from '@/stores/applicant'
-import { ConfirmDialog } from 'primevue'
 import { useUserStore } from '@/stores/user'
+import { scrollUp } from '@/utilities/util'
 
 
 const router = createRouter({
@@ -192,7 +192,7 @@ const publicPaths = [
 ]
 
 router.beforeEach((to,from,next)=>{
-
+  scrollUp()
   let user;
   if(sessionStorage.getItem('admin')){
     useUserStore().setLoggedIn(true)

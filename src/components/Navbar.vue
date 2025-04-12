@@ -29,8 +29,7 @@
             <loading-button v-if="isLoggingout" class="text-white" style="color:white"></loading-button>
 
             <div v-if="!isLoggingout" class="sm:block hidden">
-                <Button @click="confirm1($event)">L o g o u t <i class="pi pi-spin pi-spinner-dotted"></i> {{
-                    isLoggingout }} </Button>
+                <Button @click="confirm1($event)">L o g o u t </Button>
             </div>
             <div v-if="!isLoggingout" class="sm:hidden block">
                 <Button @click="confirm1($event)"><i class="pi pi-sign-out"></i></Button>
@@ -161,10 +160,9 @@ const confirm1 = (event) => {
             label: 'Yes'
         },
         accept: () => {
-            alert('logging out')
+            
             isLoggingout.value = true
             logout()
-            // toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
         },
         reject: () => {
             toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });

@@ -6,6 +6,9 @@ import { useUserStore } from './stores/user'
 </script>
 
 <template>
-  <default-layout  v-if="!useUserStore().loggedIn"></default-layout>
-  <authenticated  v-else></authenticated>
+  <main class="dark:text-black dark:bg-slate-100">
+    <default-layout v-if="!useUserStore().loggedIn"></default-layout>
+    <authenticated v-else></authenticated>
+  </main>
+
 </template>

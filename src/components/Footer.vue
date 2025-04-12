@@ -29,8 +29,8 @@ import {scrollUp} from '@/utilities/util.js'
         <div class="flex sm:w-8/12 justify-around">
             <div  class="w-1/2  text-start  gabriela-regular">
                 <div class="mx-auto w-fit">
-                    <p class="my-3 font-bold  cursor-pointer"><i class="pi pi-home mx-2"></i> Home</p>
-                    <p class="my-3 font-bold cursor-pointer"> <i  class="pi pi-user mx-2"></i> About us</p>
+                    <p class="my-3 font-bold  cursor-pointer" @click="router.push('/'),scrollUp()"><i class="pi pi-home mx-2"></i> Home</p>
+                    <p class="my-3 font-bold cursor-pointer" @click="router.push('/about-us'),scrollUp()"> <i  class="pi pi-user mx-2"></i> About us</p>
                     <p class="my-3 font-bold cursor-pointer" @click="router.push('/professions'),scrollUp()"> <i class="pi pi-users mx-2"></i>Professions</p>
                     <p class="my-3 font-bold cursor-pointer flex items-center"  @click="router.push('/auth/login'),scrollUp()">
                         <IconPortal  class="mx-2"></IconPortal>
@@ -39,9 +39,9 @@ import {scrollUp} from '@/utilities/util.js'
             </div>
             <div class="w-1/2 text-center">
                 <h1 class="font-bold text-2xl mb-5"> Contacts</h1>
-                <p class="sm:gabriela-regular text-sm my-4"><i class="pi pi-phone"></i> +254 740 544 047</p>
-                <p class="sm:gabriela-regular text-sm my-4"><i class="pi pi-envelope"></i> info@ritiassociation.or.ke</p>
-                <p class="sm:gabriela-regular text-sm  my-4"> <i class="pi pi-map-marker"></i>Meru-Milimani, off Alba Street, Opposite Alba Hotel,
+                <p class="sm:gabriela-regular text-sm my-4" @click="router.push('/contacts'),scrollUp()"><i class="pi pi-phone"></i> +254 740 544 047</p>
+                <p class="sm:gabriela-regular text-sm my-4" @click="router.push('/contacts'),scrollUp()"><i class="pi pi-envelope"></i> info@ritiassociation.or.ke</p>
+                <p class="sm:gabriela-regular text-sm  my-4" @click="router.push('/contacts'),scrollUp()"> <i class="pi pi-map-marker"></i>Meru-Milimani, off Alba Street, Opposite Alba Hotel,
                     Meru County</p>
             </div>
         </div>

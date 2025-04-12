@@ -9,7 +9,7 @@ import CTASection from '@/components/CTASection.vue';
 </script>
 
 <template>
-  <main  class="bg-slate-100 cormorant">
+  <main  class="cormorant">
     <hero-section></hero-section>
     <value-section></value-section>
     <guide-section></guide-section>

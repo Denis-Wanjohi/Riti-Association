@@ -1,7 +1,6 @@
 <script setup>
 import { FloatLabel,InputText,Select,DatePicker,Button,Toast,InputMask } from 'primevue';
 import Heading from '@/components/Heading.vue';
-// import InputFieldReg from '@/components/InputFieldReg.vue';
 import { ref, watch } from 'vue';
 import {useToast} from 'primevue/usetoast'
 import router from '@/router';
@@ -40,15 +39,15 @@ const register = ()=>{
         toast.add({severity: "warn", summary: "INPUTS ERROR", detail: "Please fill all inputs", life: '5000'});
         return;
     }
-    // if (!user.value.fullname || !user.value.email || !user.value.phone || !user.value.idNumber || !user.value.gender || !user.value.dob || !user.value.interest) {
-    //     isSubmitting.value = false;
-    //     toast.add({severity:"warn",summary:"INPUTS ERROR",detail:"Please fill all inputs",life:'5000'})
-    //     return;
-    // }
+ 
     if((new Date().getFullYear() - new Date(user.value.dob).getFullYear()) < 18 ){
         ageInvalid.value = true
         toast.add({severity:'error',summary:'AGE LIMIT',detail:'Please you must be of older than 18 years old to continue!!',life:8000})
         return;
+    }
+    if(user.value.idNumber && user.value.idNumber.toString().length > 8  && user.value.idNumber.toString().length < 5){
+        toast.add({severity:'warn',summary:'INAVALID ID NUMBER',detail:'Please use a valid identification number'})
+        return
     }
     isSubmitting.value = true
     let data = {
@@ -63,7 +62,6 @@ const register = ()=>{
     axiosClient.post('/register',data)
     .then(res=>{
         isSubmitting.value = false
-    
         user.value.fullname = null
         user.value.email = null
         user.value.dob = null
@@ -116,15 +114,15 @@ watch(()=>user.value.dob,()=>{
                         <label for="phone">Phone Number</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
-                        <InputText id="idNo" required class="sm:w-3/4 w-full"  v-model="user.idNumber"/>
+                        <InputText id="idNo" required class="sm:w-3/4 w-full" :invalid="user.idNumber && (user.idNumber.toString().length > 8 || user.idNumber.toString().length < 5)"  v-model="user.idNumber"/>
                         <label for="idNo">Identification Number</label>
+                        <p  v-if="user.idNumber && (user.idNumber.toString().length > 8 || user.idNumber.toString().length < 5)" class="text-sm text-red-500">should be a valid id number</p>
                     </FloatLabel>
                     <FloatLabel variant="on">
                         <Select :options="gender" required  v-model="user.gender" optionLabel="label" class="sm:w-3/4 w-full"  />
                         <label for="on_label">Gender</label>
                     </FloatLabel>
                     <FloatLabel variant="on">
-                        <!-- {{  new Date().getFullYear() - new Date(user.dob).getFullYear() < 18  }} -->
                         <DatePicker class="sm:w-3/4 w-full"  required v-model="user.dob" :invalid="ageInvalid" />
                         <label for="on_label">Date of Birth</label>
                     </FloatLabel>
@@ -137,7 +135,6 @@ watch(()=>user.value.dob,()=>{
                     <Button v-if="!isSubmitting" severity="info" class="font-bold w-3/4" type="submit"> S U B M I T</Button>
                     <Button  v-else severity="secondary" class="font-bold w-3/4"> <i class="pi pi-spin pi-spinner-dotted"></i> </Button>
                 </div>
-                <!-- <p class="font-thin text-center">Already have an account? <span class="font-bold text-blue-500 cursor-pointer hover:underline" @click="router.push('/auth/login')">Login</span></p> -->
             </form>
         </div>
     </div>
